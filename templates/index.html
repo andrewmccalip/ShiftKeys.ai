@@ -9,6 +9,15 @@
 <body>
     <div class="container">
         <div class="content">
+            <div class="dialog-popup" style="opacity: 0;">
+                <div class="dialog-content">
+                    <div class="dialog-input">
+                        <span class="prompt">></span>
+                        <span class="typed-text">ask anything</span>
+                        <span class="cursor"></span>
+                    </div>
+                </div>
+            </div>
             <h1>ShiftKeys.ai</h1>
             <div class="keyboard">
                 <!-- Row 1 -->
@@ -97,17 +106,27 @@
                 <div class="key">Menu</div>
                 <div class="key ctrl">Ctrl</div>
             </div>
+            <p class="usage-hint">Press <span class="key-combo">Shift+Space</span> to activate ShiftKeys.ai anywhere on your desktop</p>
             <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-button">Download</a>
         </div>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Blink the shift keys
             const shiftKeys = document.querySelectorAll('.shift');
+            const dialogPopup = document.querySelector('.dialog-popup');
+            let blinkCount = 0;
+            
             setInterval(() => {
                 shiftKeys.forEach(key => {
                     key.classList.toggle('blink');
                 });
+                
+                // Show dialog on second blink
+                blinkCount++;
+                if (blinkCount === 2) {
+                    dialogPopup.style.opacity = '1';
+                    dialogPopup.style.transition = 'opacity 0.5s ease';
+                }
             }, 1500);
         });
     </script>
