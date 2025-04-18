@@ -12,7 +12,7 @@ def home():
 
 @app.route('/latest_version')
 def latest_version():
-    return jsonify({"version": APP_VERSION})
+    return jsonify({"latest_version": APP_VERSION})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=False) 
