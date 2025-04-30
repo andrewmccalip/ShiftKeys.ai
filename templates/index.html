@@ -107,7 +107,14 @@
                 <div class="key ctrl">Ctrl</div>
             </div>
             <p class="usage-hint">Press <span class="key-combo">Left Shift</span> + <span class="key-combo">Right Shift</span> to activate ShiftKeys.ai anywhere on your desktop</p>
-            <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-button">Download</a>
+            <div class="download-options">
+                <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-link">
+                    <img src="{{ url_for('static', filename='download_windows.png') }}" alt="Download for Windows">
+                </a>
+                <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.pkg" class="download-link">
+                    <img src="{{ url_for('static', filename='download_mac.png') }}" alt="Download for Mac">
+                </a>
+            </div>
         </div>
     </div>
     <script>
