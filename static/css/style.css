@@ -12,6 +12,7 @@ body {
     padding: 0;
     background-color: #f8f9fa;
     color: #333;
+    position: relative; /* Needed for absolute positioning of login */
 }
 
 .container {
@@ -19,7 +20,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
+    padding: 40px 20px; /* Increased vertical padding */
 }
 
 .content {
@@ -32,16 +33,30 @@ body {
 .dialog-popup {
     position: relative;
     max-width: 500px;
-    margin: 30px auto 40px;
+    margin: 20px auto 40px; /* Increased top and bottom margin */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.dialog-popup.hidden {
+    opacity: 0;
+    transform: scale(0.95);
+    pointer-events: none;
+}
+
+.dialog-popup.visible {
+    opacity: 1;
+    transform: scale(1);
 }
 
 .dialog-content {
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
     padding: 15px 20px;
     text-align: left;
-    border: 1px solid #eaeaea;
+    border: 2px solid #cccccc;
+    outline: 3px solid rgba(100, 100, 100, 0.1);
+    outline-offset: 3px;
 }
 
 .dialog-input {
@@ -98,10 +113,19 @@ body {
 
 h1 {
     font-family: 'Berkeley Mono', monospace;
-    font-size: 3rem;
-    margin-bottom: 2rem;
+    font-size: 4.5rem;
+    margin-bottom: 0.5rem;
     color: #333;
-    letter-spacing: -0.5px;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 1.1rem;
+    color: #777;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    letter-spacing: 0.5px;
 }
 
 /* Keyboard Styles */
@@ -266,4 +290,30 @@ h1 {
     h1 {
         font-size: 2.5rem;
     }
+}
+
+.login-container {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10; /* Ensure it's above other content */
+}
+
+.login-button {
+    font-family: 'Berkeley Mono', monospace;
+    background-color: #f0f0f0;
+    color: #444;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.login-button:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
 } 

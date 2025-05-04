@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <div class="login-container">
+        <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="login-button">Login</a>
+    </div>
     <div class="container">
         <div class="content">
             <h1>ShiftKeys.ai</h1>
-            <div class="dialog-popup" style="opacity: 0;">
+            <p class="subtitle">simple ui for ai</p>
+            <div class="dialog-popup hidden">
                 <div class="dialog-content">
                     <div class="dialog-input">
                         <span class="prompt">></span>
@@ -121,14 +125,55 @@
         document.addEventListener('DOMContentLoaded', function() {
             const shiftKeys = document.querySelectorAll('.shift');
             const dialogPopup = document.querySelector('.dialog-popup');
-            
-            // Make dialog visible immediately
-            dialogPopup.style.opacity = '1';
-            dialogPopup.style.transition = 'opacity 0.5s ease';
-            
+            let isLeftShiftDown = false;
+            let isRightShiftDown = false;
+            let dialogActivated = false; // Flag to track activation
+
             // Apply breathing effect to shift keys
             shiftKeys.forEach(key => {
                 key.classList.add('blink');
+            });
+
+            function checkShiftState() {
+                // Only activate if both shifts are down AND it hasn't been activated yet
+                if (isLeftShiftDown && isRightShiftDown && !dialogActivated) {
+                    dialogPopup.classList.remove('hidden');
+                    dialogPopup.classList.add('visible');
+                    dialogActivated = true; // Set flag so it doesn't hide again
+                }
+                // Removed the 'else' block that would hide the dialog on keyup
+            }
+
+            document.addEventListener('keydown', function(event) {
+                if (dialogActivated) return; // Don't process keydown if already activated
+
+                if (event.code === 'ShiftLeft') {
+                    isLeftShiftDown = true;
+                    checkShiftState();
+                } else if (event.code === 'ShiftRight') {
+                    isRightShiftDown = true;
+                    checkShiftState();
+                }
+            });
+
+            document.addEventListener('keyup', function(event) {
+                if (dialogActivated) return; // Don't process keyup if already activated
+
+                if (event.code === 'ShiftLeft') {
+                    isLeftShiftDown = false;
+                    // No need to call checkShiftState here anymore for hiding
+                } else if (event.code === 'ShiftRight') {
+                    isRightShiftDown = false;
+                    // No need to call checkShiftState here anymore for hiding
+                }
+            });
+            
+            // Keep blur listener for resetting state if user tabs away before activating
+            window.addEventListener('blur', () => {
+                if (!dialogActivated) { // Only reset if not yet activated
+                    isLeftShiftDown = false;
+                    isRightShiftDown = false;
+                }
             });
         });
     </script>
