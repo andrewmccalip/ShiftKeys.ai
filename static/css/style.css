@@ -6,10 +6,13 @@
     font-style: normal;
 }
 
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #f8f9fa;
     color: #333;
     position: relative; /* Needed for absolute positioning of login */
@@ -316,4 +319,88 @@ h1 {
     background-color: #e0e0e0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transform: translateY(-1px);
+}
+
+#password-gate-container {
+    display: flex;
+    flex-direction: column; /* Arrange children in a column */
+    justify-content: center; /* Center the form vertically */
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: #f8f9fa;
+    padding-bottom: 20px; /* Add some padding at the bottom for the footer */
+    box-sizing: border-box; /* Ensure padding is included in height */
+}
+
+.password-form {
+    text-align: center;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #eaeaea;
+}
+
+.password-form h2 {
+    font-family: 'Berkeley Mono', monospace;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.password-form input[type="password"] {
+    font-family: 'Berkeley Mono', monospace;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.password-form button {
+    font-family: 'Berkeley Mono', monospace;
+    background-color: #444; /* Darker button */
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.password-form button:hover {
+    background-color: #555;
+}
+
+.error-message {
+    font-family: 'Berkeley Mono', monospace;
+    color: #d9534f; /* Red for error */
+    font-size: 0.9rem;
+    margin-top: 15px;
+    min-height: 1.2em; /* Reserve space for message */
+}
+
+/* Ensure main site body doesn't conflict with 100% height for password gate */
+#main-site-content body {
+    height: auto; /* Override if necessary, though body styles are usually global */
+}
+
+.site-footer {
+    text-align: center;
+    padding: 20px 0 0 0; /* Padding mainly at the top */
+    /* margin-top: auto; Push footer to the bottom if .password-form doesn't take all space */
+    /* width: 100%; Ensure it spans width if needed */
+}
+
+.site-footer p {
+    font-family: 'Berkeley Mono', monospace;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0;
 } 

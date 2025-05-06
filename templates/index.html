@@ -3,149 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShiftKeys.ai</title>
+    <title>ShiftKeys.ai - Access</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="login-container">
-        <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="login-button">Login</a>
+    <div id="password-gate-container">
+        <div class="password-form">
+            <h2>Enter Access Code</h2>
+            <input type="password" id="password-input" placeholder="Password">
+            <button id="password-submit">Enter</button>
+            <p id="password-error" class="error-message"></p>
+        </div>
+        <footer class="site-footer">
+            <p>Shiftkeys Private Invite</p>
+        </footer>
     </div>
-    <div class="container">
-        <div class="content">
-            <h1>ShiftKeys.ai</h1>
-            <p class="subtitle">simple ui for ai</p>
-            <div class="dialog-popup hidden">
-                <div class="dialog-content">
-                    <div class="dialog-input">
-                        <span class="prompt">></span>
-                        <span class="typed-text">ask anything, anywhere</span>
-                        <span class="cursor"></span>
+
+    <div id="main-site-content" style="display: none;"> 
+        <div class="login-container">
+            <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="login-button">Login</a>
+        </div>
+        <div class="container">
+            <div class="content">
+                <h1>ShiftKeys.ai</h1>
+                <p class="subtitle">simple ui for ai</p>
+                <div class="dialog-popup hidden">
+                    <div class="dialog-content">
+                        <div class="dialog-input">
+                            <span class="prompt">></span>
+                            <span class="typed-text">ask anything, anywhere</span>
+                            <span class="cursor"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="keyboard">
-                <!-- Row 1 -->
-                <div class="key esc">ESC</div>
-                <div class="key">F1</div>
-                <div class="key">F2</div>
-                <div class="key">F3</div>
-                <div class="key">F4</div>
-                <div class="key">F5</div>
-                <div class="key">F6</div>
-                <div class="key">F7</div>
-                <div class="key">F8</div>
-                <div class="key">F9</div>
-                <div class="key">F10</div>
-                <div class="key">F11</div>
-                <div class="key">F12</div>
-                
-                <!-- Row 2 -->
-                <div class="key">~</div>
-                <div class="key">1</div>
-                <div class="key">2</div>
-                <div class="key">3</div>
-                <div class="key">4</div>
-                <div class="key">5</div>
-                <div class="key">6</div>
-                <div class="key">7</div>
-                <div class="key">8</div>
-                <div class="key">9</div>
-                <div class="key">0</div>
-                <div class="key">-</div>
-                <div class="key">+</div>
-                <div class="key backspace">⌫</div>
-                
-                <!-- Row 3 -->
-                <div class="key tab">Tab</div>
-                <div class="key">Q</div>
-                <div class="key">W</div>
-                <div class="key">E</div>
-                <div class="key">R</div>
-                <div class="key">T</div>
-                <div class="key">Y</div>
-                <div class="key">U</div>
-                <div class="key">I</div>
-                <div class="key">O</div>
-                <div class="key">P</div>
-                <div class="key">[</div>
-                <div class="key">]</div>
-                <div class="key backslash">\</div>
-                
-                <!-- Row 4 -->
-                <div class="key caps">Caps</div>
-                <div class="key">A</div>
-                <div class="key">S</div>
-                <div class="key">D</div>
-                <div class="key">F</div>
-                <div class="key">G</div>
-                <div class="key">H</div>
-                <div class="key">J</div>
-                <div class="key">K</div>
-                <div class="key">L</div>
-                <div class="key">;</div>
-                <div class="key">'</div>
-                <div class="key enter">Enter</div>
-                
-                <!-- Row 5 -->
-                <div class="key shift left-shift">Shift</div>
-                <div class="key">Z</div>
-                <div class="key">X</div>
-                <div class="key">C</div>
-                <div class="key">V</div>
-                <div class="key">B</div>
-                <div class="key">N</div>
-                <div class="key">M</div>
-                <div class="key">,</div>
-                <div class="key">.</div>
-                <div class="key">/</div>
-                <div class="key shift right-shift">Shift</div>
-                
-                <!-- Row 6 -->
-                <div class="key ctrl">Ctrl</div>
-                <div class="key">Fn</div>
-                <div class="key win">Win</div>
-                <div class="key alt">Alt</div>
-                <div class="key space">Space</div>
-                <div class="key alt">Alt</div>
-                <div class="key">Menu</div>
-                <div class="key ctrl">Ctrl</div>
-            </div>
-            <p class="usage-hint">Press <span class="key-combo">Left Shift</span> + <span class="key-combo">Right Shift</span> to activate ShiftKeys.ai anywhere on your desktop</p>
-            <div class="download-options">
-                <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-link">
-                    <img src="{{ url_for('static', filename='download_windows.png') }}" alt="Download for Windows">
-                </a>
-                <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.pkg" class="download-link">
-                    <img src="{{ url_for('static', filename='download_mac.png') }}" alt="Download for Mac">
-                </a>
+                <div class="keyboard">
+                    <!-- Row 1 -->
+                    <div class="key esc">ESC</div>
+                    <div class="key">F1</div>
+                    <div class="key">F2</div>
+                    <div class="key">F3</div>
+                    <div class="key">F4</div>
+                    <div class="key">F5</div>
+                    <div class="key">F6</div>
+                    <div class="key">F7</div>
+                    <div class="key">F8</div>
+                    <div class="key">F9</div>
+                    <div class="key">F10</div>
+                    <div class="key">F11</div>
+                    <div class="key">F12</div>
+                    
+                    <!-- Row 2 -->
+                    <div class="key">~</div>
+                    <div class="key">1</div>
+                    <div class="key">2</div>
+                    <div class="key">3</div>
+                    <div class="key">4</div>
+                    <div class="key">5</div>
+                    <div class="key">6</div>
+                    <div class="key">7</div>
+                    <div class="key">8</div>
+                    <div class="key">9</div>
+                    <div class="key">0</div>
+                    <div class="key">-</div>
+                    <div class="key">+</div>
+                    <div class="key backspace">⌫</div>
+                    
+                    <!-- Row 3 -->
+                    <div class="key tab">Tab</div>
+                    <div class="key">Q</div>
+                    <div class="key">W</div>
+                    <div class="key">E</div>
+                    <div class="key">R</div>
+                    <div class="key">T</div>
+                    <div class="key">Y</div>
+                    <div class="key">U</div>
+                    <div class="key">I</div>
+                    <div class="key">O</div>
+                    <div class="key">P</div>
+                    <div class="key">[</div>
+                    <div class="key">]</div>
+                    <div class="key backslash">\</div>
+                    
+                    <!-- Row 4 -->
+                    <div class="key caps">Caps</div>
+                    <div class="key">A</div>
+                    <div class="key">S</div>
+                    <div class="key">D</div>
+                    <div class="key">F</div>
+                    <div class="key">G</div>
+                    <div class="key">H</div>
+                    <div class="key">J</div>
+                    <div class="key">K</div>
+                    <div class="key">L</div>
+                    <div class="key">;</div>
+                    <div class="key">'</div>
+                    <div class="key enter">Enter</div>
+                    
+                    <!-- Row 5 -->
+                    <div class="key shift left-shift">Shift</div>
+                    <div class="key">Z</div>
+                    <div class="key">X</div>
+                    <div class="key">C</div>
+                    <div class="key">V</div>
+                    <div class="key">B</div>
+                    <div class="key">N</div>
+                    <div class="key">M</div>
+                    <div class="key">,</div>
+                    <div class="key">.</div>
+                    <div class="key">/</div>
+                    <div class="key shift right-shift">Shift</div>
+                    
+                    <!-- Row 6 -->
+                    <div class="key ctrl">Ctrl</div>
+                    <div class="key">Fn</div>
+                    <div class="key win">Win</div>
+                    <div class="key alt">Alt</div>
+                    <div class="key space">Space</div>
+                    <div class="key alt">Alt</div>
+                    <div class="key">Menu</div>
+                    <div class="key ctrl">Ctrl</div>
+                </div>
+                <p class="usage-hint">Press <span class="key-combo">Left Shift</span> + <span class="key-combo">Right Shift</span> to activate ShiftKeys.ai anywhere on your desktop</p>
+                <div class="download-options">
+                    <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-link">
+                        <img src="{{ url_for('static', filename='download_windows.png') }}" alt="Download for Windows">
+                    </a>
+                    <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.pkg" class="download-link">
+                        <img src="{{ url_for('static', filename='download_mac.png') }}" alt="Download for Mac">
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
+    </div> 
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        // Password gate logic
+        const passwordGateContainer = document.getElementById('password-gate-container');
+        const mainSiteContent = document.getElementById('main-site-content');
+        const passwordInput = document.getElementById('password-input');
+        const passwordSubmit = document.getElementById('password-submit');
+        const passwordError = document.getElementById('password-error');
+        const correctPassword = "shiftpassword123shift";
+
+        passwordSubmit.addEventListener('click', function() {
+            if (passwordInput.value === correctPassword) {
+                passwordGateContainer.style.display = 'none';
+                mainSiteContent.style.display = 'block'; 
+                // Initialize main site JS after content is visible
+                initializeMainSiteLogic(); 
+            } else {
+                passwordError.textContent = 'Incorrect password. Please try again.';
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        });
+        
+        // Allow Enter key submission for password
+        passwordInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent default form submission if it were a form
+                passwordSubmit.click();
+            }
+        });
+
+        // Main site logic (needs to be callable after password success)
+        function initializeMainSiteLogic() {
             const shiftKeys = document.querySelectorAll('.shift');
             const dialogPopup = document.querySelector('.dialog-popup');
             let isLeftShiftDown = false;
             let isRightShiftDown = false;
-            let dialogActivated = false; // Flag to track activation
+            let dialogActivated = false; 
 
-            // Apply breathing effect to shift keys
             shiftKeys.forEach(key => {
                 key.classList.add('blink');
             });
 
             function checkShiftState() {
-                // Only activate if both shifts are down AND it hasn't been activated yet
                 if (isLeftShiftDown && isRightShiftDown && !dialogActivated) {
                     dialogPopup.classList.remove('hidden');
                     dialogPopup.classList.add('visible');
-                    dialogActivated = true; // Set flag so it doesn't hide again
+                    dialogActivated = true; 
                 }
-                // Removed the 'else' block that would hide the dialog on keyup
             }
 
             document.addEventListener('keydown', function(event) {
-                if (dialogActivated) return; // Don't process keydown if already activated
+                if (dialogActivated && !event.target.closest('.dialog-input')) return; 
+                if (event.target === passwordInput) return; // Ignore keydown if focus is on password input
 
                 if (event.code === 'ShiftLeft') {
                     isLeftShiftDown = true;
@@ -157,25 +200,26 @@
             });
 
             document.addEventListener('keyup', function(event) {
-                if (dialogActivated) return; // Don't process keyup if already activated
+                if (dialogActivated && !event.target.closest('.dialog-input')) return;
+                if (event.target === passwordInput) return; // Ignore keyup if focus is on password input
 
                 if (event.code === 'ShiftLeft') {
                     isLeftShiftDown = false;
-                    // No need to call checkShiftState here anymore for hiding
                 } else if (event.code === 'ShiftRight') {
                     isRightShiftDown = false;
-                    // No need to call checkShiftState here anymore for hiding
                 }
             });
             
-            // Keep blur listener for resetting state if user tabs away before activating
             window.addEventListener('blur', () => {
-                if (!dialogActivated) { // Only reset if not yet activated
+                if (!dialogActivated) { 
                     isLeftShiftDown = false;
                     isRightShiftDown = false;
                 }
             });
-        });
+        }
+        
+        // If you need to run something on initial load for the password page, it would go here.
+        // For now, the main site logic is deferred.
     </script>
 </body>
 </html> 
