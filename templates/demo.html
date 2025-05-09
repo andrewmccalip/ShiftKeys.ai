@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShiftKeys.ai - Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 1800px;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-site-content"> 
+        <div class="login-container">
+            <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="login-button">Login</a>
+        </div>
+        <div class="container">
+            <div class="content">
+                <h1>ShiftKeys.ai</h1>
+                <p class="subtitle">simple ui for ai</p>
+                
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/E4gckevfL-g" 
+                            title="YouTube video player" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+
+                <p class="usage-hint"> Press <span class="key-combo">Left Shift</span> + <span class="key-combo">Right Shift</span> to activate anywhere in your OS.</p>
+                <div class="download-options">
+                    <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-link">
+                        <img src="{{ url_for('static', filename='download_windows.png') }}" alt="Download for Windows">
+                    </a>
+                    <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.pkg" class="download-link">
+                        <img src="{{ url_for('static', filename='download_mac.png') }}" alt="Download for Mac">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div> 
+</body>
+</html> 

@@ -10,6 +10,10 @@ APP_VERSION = "0.20"  # You can update this as needed
 def home():
     return render_template('index.html')
 
+@app.route('/demo')
+def demo():
+    return render_template('demo.html')
+
 @app.route('/latest_version')
 def latest_version():
     return jsonify({"latest_version": APP_VERSION})
