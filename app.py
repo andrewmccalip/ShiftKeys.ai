@@ -14,6 +14,10 @@ def home():
 def demo():
     return render_template('demo.html')
 
+@app.route('/demo2')
+def demo2():
+    return render_template('demo2.html')
+
 @app.route('/latest_version')
 def latest_version():
     return jsonify({"latest_version": APP_VERSION})
