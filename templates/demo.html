@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShiftKeys.ai - Demo</title>
+    <title>ShiftKeys.ai - Demo 2</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         body, html {
@@ -19,6 +19,8 @@
             height: 0;
             overflow: hidden;
             margin: 20px auto;
+            border: none;
+            outline: none;
         }
         .video-container video {
             position: absolute;
@@ -64,10 +66,25 @@
         .video-container .custom-play-button:hover {
             background-color: rgba(0, 0, 0, 0.8);
         }
+        .content {
+            padding-top: 10px; /* Reduce top padding */
+        }
     </style>
 </head>
 <body>
-    <div id="main-site-content"> 
+    <div id="password-gate-container">
+        <div class="password-form">
+            <h2>Enter Access Code</h2>
+            <input type="password" id="password-input" placeholder="Password">
+            <button id="password-submit">Enter</button>
+            <p id="password-error" class="error-message"></p>
+        </div>
+        <footer class="site-footer">
+            <p>Shiftkeys Private Invite</p>
+        </footer>
+    </div>
+
+    <div id="main-site-content" style="display: none;"> 
         <div class="login-container">
             <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="login-button">Login</a>
         </div>
@@ -78,7 +95,7 @@
                 
                 <div class="video-container">
                     <video id="demo-video" autoplay loop>
-                        <source src="{{ url_for('static', filename='media/demo_casual.mp4') }}" type="video/mp4">
+                        <source src="{{ url_for('static', filename='media/demo_short.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                     <button class="custom-play-button" id="play-button"></button> 
@@ -97,34 +114,69 @@
         </div>
     </div> 
     <script>
-        // Video custom play button logic
-        const video = document.getElementById('demo-video');
-        const playButton = document.getElementById('play-button');
+        // Password gate logic
+        const passwordGateContainer = document.getElementById('password-gate-container');
+        const mainSiteContent = document.getElementById('main-site-content');
+        const passwordInput = document.getElementById('password-input');
+        const passwordSubmit = document.getElementById('password-submit');
+        const passwordError = document.getElementById('password-error');
+        const correctPassword = "claude"; // Set the new password here
 
-        if (video && playButton) {
-            // Start paused with custom button visible if not autoplaying
-            // Since autoplay is on, we'll hide the button initially 
-            // unless autoplay fails or user pauses.
-            if (!video.autoplay || video.paused) {
-                 playButton.style.display = 'flex'; 
+        passwordSubmit.addEventListener('click', function() {
+            if (passwordInput.value === correctPassword) {
+                passwordGateContainer.style.display = 'none';
+                mainSiteContent.style.display = 'block'; 
+                // Initialize main site JS after content is visible
+                initializeMainSiteLogic(); 
             } else {
-                 playButton.style.display = 'none'; 
+                passwordError.textContent = 'Incorrect password. Please try again.';
+                passwordInput.value = '';
+                passwordInput.focus();
             }
-            
-            playButton.addEventListener('click', () => {
-                video.play();
-            });
+        });
+        
+        // Allow Enter key submission for password
+        passwordInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent default form submission if it were a form
+                passwordSubmit.click();
+            }
+        });
 
-            video.addEventListener('play', () => {
-                playButton.style.display = 'none';
-                video.controls = true; // Show default controls once playing
-            });
+        // Main site logic (needs to be callable after password success)
+        function initializeMainSiteLogic() {
+            // Video custom play button logic (Moved inside)
+            const video = document.getElementById('demo-video');
+            const playButton = document.getElementById('play-button');
 
-            video.addEventListener('pause', () => {
-                playButton.style.display = 'flex'; // Show custom button again if paused
-                video.controls = false; // Optionally hide controls on pause
-            });
-        }        
+            if (video && playButton) {
+                // Start paused with custom button visible if not autoplaying
+                // Since autoplay is on, we'll hide the button initially 
+                // unless autoplay fails or user pauses.
+                if (!video.autoplay || video.paused) {
+                     playButton.style.display = 'flex'; 
+                } else {
+                     playButton.style.display = 'none'; 
+                }
+                
+                playButton.addEventListener('click', () => {
+                    video.play();
+                });
+
+                video.addEventListener('play', () => {
+                    playButton.style.display = 'none';
+                    video.controls = true; // Show default controls once playing
+                });
+
+                video.addEventListener('pause', () => {
+                    playButton.style.display = 'flex'; // Show custom button again if paused
+                    video.controls = false; // Optionally hide controls on pause
+                });
+            }        
+        }
+        
+        // If you need to run something on initial load for the password page, it would go here.
+        // For now, the main site logic is deferred.
     </script>
 </body>
 </html> 
