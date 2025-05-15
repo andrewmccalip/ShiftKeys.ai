@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShiftKeys.ai - Products</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Main site content, visible by default -->
+    <div id="main-site-content"> 
+        <div class="login-container">
+            <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="login-button">Login</a>
+        </div>
+        <div class="container">
+            <div class="content">
+                <h1>ShiftKeys.ai</h1>
+                <p class="subtitle">ui. for. ai</p>
+                <div class="download-options">
+                    <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-link">
+                        <img src="{{ url_for('static', filename='download_windows.png') }}" alt="Download for Windows">
+                    </a>
+                    <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.pkg" class="download-link">
+                        <img src="{{ url_for('static', filename='download_mac.png') }}" alt="Download for Mac">
+                    </a>
+                </div>
+
+                <!-- START: Product Tiers Section -->
+                <div class="product-tiers-container">
+                    <div class="product-tier">
+                        <h3>Free</h3>
+                        <p class="price">$0 per month</p>
+                        <ul>
+                            <li>50 calls per day</li>
+                            <li>300+ models</li>
+                        </ul>
+                        <!-- No button for Free tier usually -->
+                    </div>
+                    <div class="product-tier">
+                        <h3>BYOK (Bring Your Own Key)</h3>
+                        <p class="price">$5/month</p>
+                        <ul>
+                            <li>Use your own API keys</li>
+                            <li>Unlimited program usage</li>
+                            <li>300+ models</li>
+                        </ul>
+                        <a href="https://buy.stripe.com/test_cNi8wP2NS1gB4h8aZPdUY01" class="stripe-button" target="_blank">Choose BYOK</a>
+                    </div>
+                    <div class="product-tier">
+                        <h3>Unlimited</h3>
+                        <p class="price">$10/month</p>
+                        <ul>
+                            <li>Unlimited usage</li>
+                            <li>300+ models</li>
+                            <li>Early access to new features</li>
+                        </ul>
+                        <a href="https://buy.stripe.com/test_6oU5kD4W0gbvdRIaZPdUY00" class="stripe-button" target="_blank">Choose Unlimited</a>
+                    </div>
+                </div>
+                <!-- END: Product Tiers Section -->
+
+                <!-- START: First Keyboard Animation Section -->
+                <div class="keyboard-animation-section">
+                    <div class="keyboard-animation-container">
+                        <!-- Removed title: <p class="usage-hint" style="text-align: center; font-size: 1.1em; margin-bottom: 25px;">See How It Works: The OS-Level Popup</p> -->
+                        
+                        <!-- Animated Dialog Popup (initially hidden) -->
+                        <div id="dialog-popup-animation-1" class="dialog-popup hidden"> <!-- Re-use existing .dialog-popup styling -->
+                            <div class="dialog-content">
+                                <div class="dialog-input">
+                                    <span class="prompt">></span>
+                                    <span id="typed-text-animation-1" class="typed-text"></span>
+                                    <span class="cursor"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="usage-hint" style="text-align: center; margin-bottom: 15px;">Press <span class="key-combo">Left Shift</span> + <span class="key-combo">Right Shift</span> to activate</p>
+                        <!-- Keyboard for Animation 1 -->
+                        <div class="keyboard" id="keyboard-animation-1">
+                            <!-- Row 1 -->
+                            <div class="key esc">ESC</div><div class="key">F1</div><div class="key">F2</div><div class="key">F3</div><div class="key">F4</div><div class="key">F5</div><div class="key">F6</div><div class="key">F7</div><div class="key">F8</div><div class="key">F9</div><div class="key">F10</div><div class="key">F11</div><div class="key">F12</div>
+                            <!-- Row 2 -->
+                            <div class="key tilde">~</div><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key">0</div><div class="key">-</div><div class="key">+</div><div class="key backspace">⌫</div>
+                            <!-- Row 3 -->
+                            <div class="key tab">Tab</div><div class="key">Q</div><div class="key">W</div><div class="key">E</div><div class="key">R</div><div class="key">T</div><div class="key">Y</div><div class="key">U</div><div class="key">I</div><div class="key">O</div><div class="key">P</div><div class="key">[</div><div class="key">]</div><div class="key backslash">\</div>
+                            <!-- Row 4 -->
+                            <div class="key caps">Caps</div><div class="key">A</div><div class="key">S</div><div class="key">D</div><div class="key">F</div><div class="key">G</div><div class="key">H</div><div class="key">J</div><div class="key">K</div><div class="key">L</div><div class="key">;</div><div class="key">'</div><div class="key enter">Enter</div>
+                            <!-- Row 5 -->
+                            <div class="key shift left-shift" id="left-shift-animation-1">Shift</div><div class="key">Z</div><div class="key">X</div><div class="key">C</div><div class="key">V</div><div class="key">B</div><div class="key">N</div><div class="key">M</div><div class="key">,</div><div class="key">.</div><div class="key">/</div><div class="key shift right-shift" id="right-shift-animation-1">Shift</div>
+                            <!-- Row 6 -->
+                            <div class="key ctrl">Ctrl</div><div class="key">Fn</div><div class="key win">Win</div><div class="key alt">Alt</div><div class="key space">Space</div><div class="key alt">Alt</div><div class="key">Menu</div><div class="key ctrl">Ctrl</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: First Keyboard Animation Section -->
+
+                <!-- START: Second Keyboard Animation Section -->
+                <div class="keyboard-animation-section" id="keyboard-animation-section-2">
+                    <div class="keyboard-animation-container" id="keyboard-animation-container-2">
+                        <!-- Removed title: <p class="usage-hint" style="text-align: center; font-size: 1.1em; margin-bottom: 25px;">Quickly Add Context: Double Tap Shift</p> -->
+                        
+                        <!-- Context Added Popup (initially hidden) -->
+                        <div id="context-popup-animation-2" class="context-popup">
+                            Context Added!
+                        </div>
+
+                        <p class="usage-hint" style="text-align: center; margin-bottom: 15px;">Double tap <span class="key-combo">Left Shift</span> to add context</p>
+                        <!-- Keyboard for Animation 2 -->
+                        <div class="keyboard" id="keyboard-animation-2">
+                            <!-- Row 1 -->
+                            <div class="key esc">ESC</div><div class="key">F1</div><div class="key">F2</div><div class="key">F3</div><div class="key">F4</div><div class="key">F5</div><div class="key">F6</div><div class="key">F7</div><div class="key">F8</div><div class="key">F9</div><div class="key">F10</div><div class="key">F11</div><div class="key">F12</div>
+                            <!-- Row 2 -->
+                            <div class="key tilde">~</div><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key">0</div><div class="key">-</div><div class="key">+</div><div class="key backspace">⌫</div>
+                            <!-- Row 3 -->
+                            <div class="key tab">Tab</div><div class="key">Q</div><div class="key">W</div><div class="key">E</div><div class="key">R</div><div class="key">T</div><div class="key">Y</div><div class="key">U</div><div class="key">I</div><div class="key">O</div><div class="key">P</div><div class="key">[</div><div class="key">]</div><div class="key backslash">\</div>
+                            <!-- Row 4 -->
+                            <div class="key caps">Caps</div><div class="key">A</div><div class="key">S</div><div class="key">D</div><div class="key">F</div><div class="key">G</div><div class="key">H</div><div class="key">J</div><div class="key">K</div><div class="key">L</div><div class="key">;</div><div class="key">'</div><div class="key enter">Enter</div>
+                            <!-- Row 5 -->
+                            <div class="key shift left-shift" id="left-shift-animation-2">Shift</div><div class="key">Z</div><div class="key">X</div><div class="key">C</div><div class="key">V</div><div class="key">B</div><div class="key">N</div><div class="key">M</div><div class="key">,</div><div class="key">.</div><div class="key">/</div><div class="key shift right-shift" id="right-shift-animation-2">Shift</div>
+                            <!-- Row 6 -->
+                            <div class="key ctrl">Ctrl</div><div class="key">Fn</div><div class="key win">Win</div><div class="key alt">Alt</div><div class="key space">Space</div><div class="key alt">Alt</div><div class="key">Menu</div><div class="key ctrl">Ctrl</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Second Keyboard Animation Section -->
+
+                <!-- Note: Original general purpose keyboard and dialog-popup are removed -->
+                <!-- The 'initializeMainSiteLogic' function which handled the general interactive keyboard is also removed for now -->
+                <!-- The 'usage-hint' for the general keyboard is also removed -->
+
+            </div>
+        </div>
+    </div> 
+
+    <script>
+        function typeTextEffect(element, text, speed, callback) {
+            let i = 0;
+            element.innerHTML = ""; // Clear previous text
+            const cursor = element.nextElementSibling; // Assuming cursor is the next sibling
+            if(cursor) cursor.style.display = 'inline-block';
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    if(cursor) cursor.style.display = 'none'; // Hide cursor after typing
+                    if (callback) callback();
+                }
+            }
+            type();
+        }
+
+        function runKeyboardAnimation1() {
+            const leftShift = document.getElementById('left-shift-animation-1');
+            const rightShift = document.getElementById('right-shift-animation-1');
+            const dialogPopup = document.getElementById('dialog-popup-animation-1');
+            const typedTextElement = document.getElementById('typed-text-animation-1');
+            const keyboardElement = document.getElementById('keyboard-animation-1'); // Get keyboard element
+
+            if (!leftShift || !rightShift || !dialogPopup || !typedTextElement || !keyboardElement) {
+                console.error("Animation elements not found for Animation 1!");
+                return;
+            }
+
+            // Reset state
+            leftShift.classList.remove('highlight-anim');
+            rightShift.classList.remove('highlight-anim');
+            keyboardElement.classList.remove('keyboard-faded'); // Reset fade
+            dialogPopup.classList.remove('visible');
+            dialogPopup.classList.add('hidden');
+            typedTextElement.innerHTML = "";
+            const cursor = typedTextElement.nextElementSibling;
+            if(cursor) cursor.style.display = 'inline-block';
+
+            // Sequence of operations
+            // 1. Highlight Left Shift
+            setTimeout(() => {
+                leftShift.classList.add('highlight-anim');
+            }, 500); // Delay before left shift highlights
+
+            // 2. Highlight Right Shift (after left shift)
+            setTimeout(() => {
+                rightShift.classList.add('highlight-anim');
+            }, 1000); // Delay before right shift highlights (0.5s after left)
+
+            // 3. Show dialog popup (after both shifts are highlighted)
+            setTimeout(() => {
+                dialogPopup.classList.remove('hidden');
+                dialogPopup.classList.add('visible');
+                keyboardElement.classList.add('keyboard-faded'); // Fade keyboard
+                
+                // Turn off shift highlights when dialog appears
+                leftShift.classList.remove('highlight-anim');
+                rightShift.classList.remove('highlight-anim');
+                
+                // 4. Type initial text: "distance from earth to moon"
+                typeTextEffect(typedTextElement, "distance from earth to moon", 70, () => {
+                    // 4a. Delay 0.25s
+                    setTimeout(() => {
+                        typedTextElement.innerHTML = "query running..."; // Updated text
+                        if(cursor) cursor.style.display = 'none'; 
+                        
+                        // 4b. Delay for "query running..." message to be visible
+                        setTimeout(() => {
+                            typedTextElement.innerHTML = "~238,855 miles"; 
+
+                            // 4c. Keep dialog with final answer for 2 seconds
+                            setTimeout(() => {
+                                dialogPopup.classList.remove('visible');
+                                dialogPopup.classList.add('hidden');
+                                keyboardElement.classList.remove('keyboard-faded'); // Unfade keyboard
+                                // Shift highlights already removed
+                                
+                                // 5. Loop the animation
+                                setTimeout(runKeyboardAnimation1, 2000); 
+                            }, 2000); // Duration final answer is shown (2 seconds)
+                        }, 2000); 
+                    }, 250); 
+                });
+            }, 1500); 
+        }
+
+        function runKeyboardAnimation2() {
+            const leftShift = document.getElementById('left-shift-animation-2');
+            const contextPopup = document.getElementById('context-popup-animation-2');
+
+            if (!leftShift || !contextPopup) {
+                console.error("Animation elements not found for Animation 2!");
+                return;
+            }
+
+            // Reset state
+            leftShift.classList.remove('highlight-anim');
+            contextPopup.classList.remove('visible');
+            contextPopup.style.opacity = '0'; // Ensure it starts hidden if transitions rely on it
+
+            // Sequence of operations
+            const highlightDuration = 150;
+            const delayBetweenTaps = 100;
+            const popupDuration = 1000;
+            const loopDelay = 3000; // Time before restarting the whole sequence
+
+            setTimeout(() => { // Start of first tap
+                leftShift.classList.add('highlight-anim');
+                setTimeout(() => { // End of first tap
+                    leftShift.classList.remove('highlight-anim');
+                    setTimeout(() => { // Start of second tap
+                        leftShift.classList.add('highlight-anim');
+                        setTimeout(() => { // End of second tap & show popup
+                            leftShift.classList.remove('highlight-anim');
+                            
+                            // Show context popup
+                            contextPopup.classList.add('visible');
+                            contextPopup.style.opacity = '1';
+
+                            setTimeout(() => { // Hide context popup
+                                contextPopup.classList.remove('visible');
+                                contextPopup.style.opacity = '0';
+                                
+                                // Loop the animation
+                                setTimeout(runKeyboardAnimation2, loopDelay);
+                            }, popupDuration);
+                        }, highlightDuration);
+                    }, delayBetweenTaps);
+                }, highlightDuration);
+            }, 500); // Initial delay before starting the animation loop
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            runKeyboardAnimation1();
+            runKeyboardAnimation2(); 
+        });
+    </script>
+</body>
+</html> 

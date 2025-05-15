@@ -22,5 +22,9 @@ def demo2():
 def latest_version():
     return jsonify({"latest_version": APP_VERSION})
 
+@app.route('/products')
+def products():
+    return render_template('products.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=False) 
