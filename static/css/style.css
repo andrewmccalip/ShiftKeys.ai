@@ -28,7 +28,9 @@ body {
 
 .content {
     text-align: center;
-    max-width: 90%;
+    max-width: 1000px; /* Changed from 90% */
+    margin-left: auto; /* Ensure content is centered with a fixed max-width */
+    margin-right: auto; /* Ensure content is centered with a fixed max-width */
     position: relative;
 }
 
@@ -405,54 +407,58 @@ h1 {
     margin: 0;
 }
 
-/* Styles moved from products.html */
 /* Styles for product tiers */
 .product-tiers-container {
     display: flex;
-    justify-content: space-around; /* Or space-between */
-    gap: 20px;
+    justify-content: center; /* Changed from space-around for better wrapping */
+    gap: 15px; /* Reduced from 20px */
     margin-top: 40px;
     margin-bottom: 50px;
-    padding: 10px; /* Added padding to ensure shadow is visible if tiers overflow */
-    flex-wrap: nowrap; /* Prevent wrapping to new line */
-    overflow-x: auto; /* Allow horizontal scrolling if needed */
-    align-items: stretch; /* Make tier boxes of equal height */
+    padding: 10px; 
+    /* overflow-x: auto; Removed, not needed with wrap */
+    align-items: stretch; 
 }
 
 .product-tier {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 25px;
+    padding: 20px; /* Reduced from 25px */
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    flex-basis: 300px; /* Starting basis for width */
-    flex-shrink: 0; /* Prevent shrinking if container is too small */
-    min-width: 260px; /* Ensure they don't get too small */
-    max-width: 320px; /* Control maximum width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    flex-basis: 240px; /* Reduced from 280px */
+    flex-grow: 0;   /* Changed from 1 to prevent excessive expansion */
+    flex-shrink: 1; 
+    min-width: 220px; /* Adjusted from 200px */
+    max-width: 240px; /* Reduced from 280px */
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Distributes space between title, list, and button */
+    justify-content: space-between; 
 }
 
 .product-tier h3 {
     font-family: 'Berkeley Mono', monospace;
     color: #333;
     margin-top: 0;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reduced from 15px */
     font-size: 1.6em;
+    display: flex;         /* To use align-items for vertical centering */
+    align-items: center;   /* Vertically center text content if h3 has height */
+    justify-content: center; /* Horizontally center text content */
+    text-align: center;    /* Ensure horizontal text centering */
+    min-height: 2.5em;       /* Ensure a minimum height for consistent centering */
 }
 
 .product-tier ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 20px 0;
+    margin: 0 0 15px 0; /* Reduced bottom margin from 20px */
     text-align: left;
     flex-grow: 1; /* Allows ul to take available space, pushing button down */
 }
 
 .product-tier ul li {
-    margin-bottom: 10px;
+    margin-bottom: 6px; /* Reduced from 10px */
     color: #555;
     font-size: 0.95em;
     position: relative;
@@ -471,14 +477,14 @@ h1 {
     font-size: 1.1em;
     font-weight: bold;
     color: #007bff;
-    margin-bottom: 20px;
+    margin-bottom: 15px; /* Reduced from 20px */
 }
 
 .stripe-button {
     display: inline-block;
     background-color: #6772e5; /* Stripe's purple */
     color: white;
-    padding: 12px 20px;
+    padding: 12px 15px; /* Reduced horizontal padding from 20px to 15px */
     border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
@@ -494,7 +500,7 @@ h1 {
 
 /* Styles for Keyboard Animations */
 .keyboard-animation-section {
-    padding: 30px 20px;
+    padding: 15px 5px;
     margin-top: 40px;
     margin-bottom: 30px;
     border-radius: 10px;
@@ -540,23 +546,19 @@ h1 {
     background-color: #ffe0b2; /* Light orange highlight */
     box-shadow: 0 0 10px #ffcc80; /* Orange glow */
 }
-#keyboard-animation-1.keyboard-faded {
-    opacity: 0.10; /* Fade keyboard to 10% */
-    transition: opacity 0.5s ease-in-out;
-}
 #keyboard-animation-1 {
-    /* General styles for the first animated keyboard if different from global .keyboard */
-    /* e.g., margin-bottom: 0; if it's directly above something without space */
-    transition: opacity 0.5s ease-in-out; /* For smooth fade in/out */
+    padding: 25px;
+    box-sizing: border-box;
+    display: block; /* Override .keyboard's grid display for single image */
 }
 
 
 /* Specific styles for the second animation's context popup */
 #context-popup-animation-2 {
     position: absolute;
-    bottom: calc(100% + 10px); /* Position above the keyboard with a small gap */
+    top: 50%; /* Changed from bottom: calc(100% + 10px) */
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%); /* Changed from translateX(-50%) */
     background-color: #333; /* Dark background */
     color: white;
     padding: 8px 15px;
@@ -571,15 +573,68 @@ h1 {
 
 #context-popup-animation-2.visible {
     opacity: 1;
-    transform: translateX(-50%) translateY(-5px); /* Slight upward movement on show */
+    transform: translate(-50%, -50%); /* Adjusted for vertical centering, removed translateY(-5px) */
 }
 
 #keyboard-animation-2 {
-    /* General styles for the second animated keyboard if different */
+    padding: 25px;
+    box-sizing: border-box;
+    display: block; /* Override .keyboard's grid display for single image */
 }
 
 /* Highlight for animated keys in the second animation */
 #keyboard-animation-2 .shift.highlight-anim {
     background-color: #c8e6c9; /* Light green highlight */
     box-shadow: 0 0 10px #a5d6a7; /* Green glow */
+}
+
+/* Corner Overlay Banner Styles */
+.corner-overlay-banner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    z-index: 1; /* Ensure it sits above the image if image also has z-index */
+}
+
+.corner-overlay-banner span {
+    position: absolute;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 225px; 
+    background-color: #6772e5; 
+    color: white;
+    font-size: 9px; 
+    font-family: 'Berkeley Mono', monospace;
+    padding: 6px 5px 6px 25px; /* top right bottom left - More left padding to shift text right */
+    right: -52px; 
+    top: 28px;    
+    transform: rotate(45deg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Specific override for the context banner text for more left offset */
+#context-banner-text {
+    padding-left: 35px; /* Increase left padding for more offset */
+}
+
+/* Responsive styles for product tiers */
+@media (max-width: 768px) {
+    .product-tiers-container {
+        flex-direction: column;
+        align-items: center; /* Center items when stacked */
+        overflow-x: visible; /* Not needed for column layout */
+        /* gap will still apply for vertical spacing */
+    }
+
+    .product-tier {
+        flex-basis: auto; /* Allow item to grow/shrink as needed in column */
+        width: 90%;       /* Take up most of the width */
+        max-width: 400px; /* But not too wide on slightly larger mobile screens */
+        /* min-width can be removed or adjusted if necessary */
+        /* flex-shrink: 0; can be removed as it's less relevant in column flow */
+    }
 } 
