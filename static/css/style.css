@@ -23,7 +23,7 @@ body {
     justify-content: center;
     /* align-items: center; */ /* Removed for less vertical space */
     min-height: 100vh;
-    padding: 40px 75px; /* Adjusted left/right padding */
+    padding: 20px 75px; /* Adjusted top/bottom padding */
 }
 
 .content {
