@@ -638,80 +638,11 @@ h1 {
         /* min-width can be removed or adjusted if necessary */
         /* flex-shrink: 0; can be removed as it's less relevant in column flow */
     }
-}
 
-/* START: FAQ Section Styles */
-.faq-section {
-    text-align: left;
-    margin-top: 60px;
-    margin-bottom: 60px;
-    padding: 0 10px; /* Adjusted padding slightly */
-}
-
-.faq-section h2 {
-    font-family: 'Berkeley Mono', monospace;
-    font-size: 2.2rem; /* Slightly smaller h2 */
-    color: #333;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.faq-grid-container {
-    /* display: grid; */ /* Removed for CSS Columns */
-    /* grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); */ /* Removed */
-    column-count: 3; /* Using CSS Columns for masonry */
-    column-gap: 25px; /* Only column gap */
-    /* row-gap: 0; */ /* Removed */
-    /* align-items: start; */ /* Removed */
-    /* grid-auto-flow: dense; */ /* Removed */
-}
-
-.faq-item {
-    background-color: #ffffff;
-    border: 1px solid #e9e9e9; /* Lighter border */
-    border-radius: 8px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
-    text-align: left;
-    margin-bottom: 25px; /* Vertical spacing for items */
-    break-inside: avoid-column; /* Prevent items from breaking across columns */
-}
-
-.faq-item h4 {
-    font-family: 'Arial', sans-serif; /* Using Arial for question clarity */
-    font-size: 1.15rem; /* Question font size */
-    font-weight: bold;
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 12px;
-}
-
-.faq-item p {
-    font-size: 0.9rem; /* Answer font size */
-    color: #555;
-    line-height: 1.65;
-    margin-bottom: 10px; /* Space between paragraphs in an answer */
-}
-
-.faq-item p:last-child {
-    margin-bottom: 0; /* No bottom margin for the last paragraph */
-}
-
-/* Responsive styles for product tiers */
-@media (max-width: 768px) {
-    .product-tiers-container {
-        flex-direction: column;
-        align-items: center; /* Center items when stacked */
-        overflow-x: visible; /* Not needed for column layout */
-        /* gap will still apply for vertical spacing */
-    }
-
-    .product-tier {
-        flex-basis: auto; /* Allow item to grow/shrink as needed in column */
-        width: 90%;       /* Take up most of the width */
-        max-width: 400px; /* But not too wide on slightly larger mobile screens */
-        /* min-width can be removed or adjusted if necessary */
-        /* flex-shrink: 0; can be removed as it's less relevant in column flow */
+    /* Make login button smaller on mobile */
+    .login-button {
+        padding: 6px 10px; /* Reduced padding */
+        font-size: 0.8rem; /* Reduced font size */
     }
 
     /* Responsive adjustments for FAQ columns */
@@ -727,3 +658,17 @@ h1 {
     }
 }
 /* END: FAQ Section Styles */ 
+
+/* Value Proposition Quote Style */
+.value-prop-quote {
+    font-size: 1.25em;
+    line-height: 1.7;
+    max-width: 720px;
+    margin: 0 auto 25px auto;
+    color: #333333; /* Darker text color for readability */
+    font-weight: 400;
+    border-left: 3px solid #555555; /* Slightly darker border */
+    padding-left: 20px;
+    font-style: italic;
+    text-align: left; /* Ensure text within quote is left-aligned */
+} 

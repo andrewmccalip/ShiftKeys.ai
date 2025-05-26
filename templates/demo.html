@@ -107,7 +107,13 @@
 
                 <p class="blurb">If you landed on this page, you were invited for a sneak peek. Feel free to download the demo and take it for a test drive. Give me some feedback before we launch this thing.</p>
 
-                <p class="usage-hint"> Press <span class="key-combo">Left Shift</span> + <span class="key-combo">Right Shift</span> to activate anywhere in your OS.</p>
+                <div class="usage-hint" style="text-align: left; margin-top: 20px; margin-bottom: 20px;">
+                    <p style="margin-bottom: 8px; font-weight: bold; font-size: 1.1em;">Shortcuts</p>
+                    <ul style="list-style-type: disc; margin-left: 25px; padding-left: 0; line-height: 1.6;">
+                        <li><span class="key-combo">Left Shift</span> + <span class="key-combo">Right Shift</span> &rarr; open the prompt</li>
+                        <li><span class="key-combo">Shift</span> double tap &rarr; append selected text to context (no prompt)</li>
+                    </ul>
+                </div>
                 <div class="download-options">
                     <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-link">
                         <img src="{{ url_for('static', filename='download_windows.png') }}" alt="Download for Windows">
