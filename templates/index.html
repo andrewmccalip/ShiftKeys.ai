@@ -32,80 +32,78 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb gradient-orb-1"></div>
+            <div class="gradient-orb gradient-orb-2"></div>
+            <div class="gradient-orb gradient-orb-3"></div>
+        </div>
+        
         <div class="hero-content">
             <div class="hero-statement-container">
-                <h1 class="hero-main-statement">Browserless AI</h1>
-                <p class="hero-sub-statement">ShiftKeys.ai embeds AI directly into your operating system. No more browser tabs, just seamless intelligence everywhere you work.</p>
-                <ul class="hero-key-benefits">
-                    <li>✓ Works in any app</li>
-                    <li>✓ Instant access</li>
-                    <li>✓ Context that flows</li>
-                    <li>✓ Blazing fast replies</li>
-                </ul>
+                <h1 class="hero-main-statement">
+                    <span class="hero-word-ai">AI</span>
+                    <span class="hero-word-everywhere">everywhere.</span>
+                </h1>
+                <p class="hero-sub-statement">
+                    AI in the OS. Escape the copy/paste doom loop from browser based AI.
+                </p>
             </div>
             
             <div class="demo-animation-container">
                 <!-- Animation will be inserted here by JavaScript -->
             </div>
+            
             <div class="hero-shortcut">
-                <span class="shortcut-key">Left Shift</span>
-                <span class="plus">+</span>
-                <span class="shortcut-key">Right Shift</span>
-                <span class="equals">=</span>
-                <span class="shortcut-text">AI Everywhere</span>
-            </div>
-            <div class="hero-cta">
-                <a href="#demo" class="btn btn-primary">Watch Demo</a>
-                <a href="#pricing" class="btn btn-secondary">Get Early Access</a>
-            </div>
-        </div>
-        <!-- 
-        <div class="hero-visual">
-            <div class="logo-gallery-grid">
-                <div class="logo-gallery-tile">
-                    <img src="{{ url_for('static', filename='images/outlook_icon.png') }}" alt="Outlook" class="app-icon">
-                </div>
-                <div class="logo-gallery-tile">
-                    <img src="{{ url_for('static', filename='images/slack.webp') }}" alt="Slack" class="app-icon">
-                </div>
-                <div class="logo-gallery-tile">
-                    <img src="{{ url_for('static', filename='images/salesforce_icon.png') }}" alt="Salesforce" class="app-icon">
-                </div>
-                <div class="logo-gallery-tile">
-                    <img src="{{ url_for('static', filename='images/powerpoint_icon.jpg') }}" alt="PowerPoint" class="app-icon">
-                </div>
-                <div class="logo-gallery-tile">
-                    <img src="{{ url_for('static', filename='images/notion_icon.png') }}" alt="Notion" class="app-icon">
-                </div>
-                <div class="logo-gallery-tile">
-                    <div class="generic-icon teams-color">T</div>
-                </div>
-                <div class="logo-gallery-tile">
-                    <div class="generic-icon excel-color">E</div>
-                </div>
-                <div class="logo-gallery-tile">
-                    <div class="generic-icon gmail-color">G</div>
-                </div>
-                <div class="logo-gallery-tile">
-                    <div class="generic-icon zoom-color">Z</div>
-                </div>
-                <div class="logo-gallery-tile">
-                    <div class="generic-icon jira-color">J</div>
-                </div>
-                <div class="logo-gallery-tile">
-                    <div class="generic-icon github-color">
-                        <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.18.7.8.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-                        </svg>
+                <div class="shortcut-visual">
+                    <div class="key-group">
+                        <span class="shortcut-key minimal-key left-shift">
+                            <span class="key-arrow">↑</span>
+                            <span class="key-text">shift</span>
+                        </span>
+                    </div>
+                    <span class="plus-symbol">+</span>
+                    <div class="key-group">
+                        <span class="shortcut-key minimal-key right-shift">
+                            <span class="key-text">shift</span>
+                            <span class="key-arrow">↑</span>
+                        </span>
                     </div>
                 </div>
-                <div class="logo-gallery-tile">
-                    <img src="{{ url_for('static', filename='images/discord.png') }}" alt="Discord" class="app-icon">
+            </div>
+            
+            <div class="hero-cta">
+                <a href="#demo" class="btn btn-primary-minimal">
+                    Watch demo
+                    <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M6 11L9 8L6 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="#pricing" class="btn btn-secondary-minimal">Download</a>
+            </div>
+            
+            <div class="hero-features">
+                <div class="feature-pill">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <circle cx="8" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 1V3M8 13V15M1 8H3M13 8H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>500ms response</span>
                 </div>
-                 <!-- Add more tiles as needed -->
+                <div class="feature-pill">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <rect x="2" y="2" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M6 6H10M6 10H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <span>Works everywhere</span>
+                </div>
+                <div class="feature-pill">
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 2L10 6L14 6.5L11 9.5L11.5 13.5L8 11.5L4.5 13.5L5 9.5L2 6.5L6 6L8 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Privacy first</span>
+                </div>
             </div>
         </div>
-        -->
     </section>
 
     <!-- Problem Section -->
@@ -212,7 +210,7 @@
             <h2 class="section-title">See It in Action</h2>
             <div class="demo-content">
                 <div class="demo-video-container">
-                    <video id="demo-video" controls poster="{{ url_for('static', filename='images/video-poster.jpg') }}">
+                    <video id="demo-video" controls>
                         <source src="{{ url_for('static', filename='media/demo.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>

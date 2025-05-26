@@ -354,27 +354,27 @@ function createShiftKeyAnimation() {
     const animationContainer = document.querySelector('.demo-animation-container');
     if (!shortcutContainer || !animationContainer) return;
 
-    // Create AI query box element
+    // Create AI query box element with minimalistic styling
     const aiQueryBox = document.createElement('div');
     aiQueryBox.className = 'ai-query-box';
     aiQueryBox.innerHTML = `
         <div class="ai-query-content">
             <div class="ai-query-input">
                 <span class="ai-cursor"></span>
-                <span class="ai-placeholder">Type your query...</span>
+                <span class="ai-placeholder">Ask me anything...</span>
                 <span class="ai-query-text" tabindex="-1"></span>
                 <span class="ai-timer" style="display: none;"></span>
                 <span class="ai-answer" style="display: none;"></span>
             </div>
             <div class="ai-query-bottom-content">
                 <div class="ai-action-buttons" style="display: none;">
-                    <button class="ai-btn ai-btn-reject">✗ Reject</button>
-                    <button class="ai-btn ai-btn-regenerate">↻ Regenerate</button>
-                    <button class="ai-btn ai-btn-accept">✓ Accept</button>
+                    <button class="ai-btn ai-btn-reject">Reject</button>
+                    <button class="ai-btn ai-btn-regenerate">Regenerate</button>
+                    <button class="ai-btn ai-btn-accept">Accept</button>
                 </div>
                 <div class="ai-query-footer">
                     <span class="ai-model">Claude 4</span>
-                    <span class="ai-hint">Press Enter to submit</span>
+                    <span class="ai-hint">Press Enter to send</span>
                 </div>
             </div>
         </div>
@@ -384,15 +384,22 @@ function createShiftKeyAnimation() {
     animationContainer.appendChild(aiQueryBox);
 
     // Get the shift key elements
-    const leftShift = shortcutContainer.querySelector('.shortcut-key:first-child');
-    const rightShift = shortcutContainer.querySelector('.shortcut-key:nth-child(3)');
+    const keyGroups = document.querySelectorAll('.minimal-key');
+    const leftShift = keyGroups[0];
+    const rightShift = keyGroups[1];
+    
+    // Check if elements exist
+    if (!leftShift || !rightShift) {
+        console.error('Shift key elements not found');
+        return;
+    }
 
     function runAnimation() {
         // Reset states
         leftShift.classList.remove('key-pressed');
         rightShift.classList.remove('key-pressed');
         aiQueryBox.classList.remove('show');
-        shortcutContainer.style.visibility = 'visible'; // Ensure shortcut is visible at the start of the loop
+        shortcutContainer.style.visibility = 'visible';
         
         const placeholder = aiQueryBox.querySelector('.ai-placeholder');
         const queryText = aiQueryBox.querySelector('.ai-query-text');
@@ -400,10 +407,10 @@ function createShiftKeyAnimation() {
         const answer = aiQueryBox.querySelector('.ai-answer');
         const actionButtons = aiQueryBox.querySelector('.ai-action-buttons');
         const footer = aiQueryBox.querySelector('.ai-query-footer');
-        const aiCursor = aiQueryBox.querySelector('.ai-cursor'); // Get cursor element
+        const aiCursor = aiQueryBox.querySelector('.ai-cursor');
         
         // Reset content and cursor visibility
-        aiCursor.style.display = 'inline-block'; // Show cursor by default
+        aiCursor.style.display = 'inline-block';
         placeholder.style.display = 'inline';
         queryText.textContent = '';
         queryText.style.display = 'inline';
@@ -427,46 +434,45 @@ function createShiftKeyAnimation() {
         // Step 3: Show AI query box
         setTimeout(() => {
             aiQueryBox.classList.add('show');
-            shortcutContainer.style.visibility = 'hidden'; // Hide shortcut when AI box appears
+            shortcutContainer.style.visibility = 'hidden';
         }, 1900);
 
         // Step 4: Type the query
         setTimeout(() => {
             placeholder.style.display = 'none';
-            aiCursor.style.display = 'inline-block'; // Ensure cursor is visible for typing
-            typeQuery('Distance from Earth to Moon?', queryText);
+            aiCursor.style.display = 'inline-block';
+            typeQuery('What is the distance from Earth to the Moon?', queryText);
         }, 2400);
 
         // Step 5: Show timer after query is typed
         setTimeout(() => {
             queryText.style.display = 'none';
-            aiCursor.style.display = 'none'; // Hide cursor
+            aiCursor.style.display = 'none';
             timer.style.display = 'inline';
-            timer.style.color = '#6c757d';
+            timer.style.color = '#6e6e73';
             
-            // Animate timer from 0.00s to 1.00s
+            // Animate timer with minimal style
             let elapsed = 0;
             const timerInterval = setInterval(() => {
-                elapsed += 0.02; // Adjusted increment for 20ms interval
-                timer.textContent = `${elapsed.toFixed(2)}s elapsed...`; // Display two decimal places
+                elapsed += 0.02;
+                timer.textContent = `${elapsed.toFixed(2)}s`;
                 if (elapsed >= 1.0) {
                     clearInterval(timerInterval);
-                    // Ensure final display is exactly 1.00 if needed, though >= 1.0 should catch it.
-                    timer.textContent = `${(1.0).toFixed(2)}s elapsed...`; 
+                    timer.textContent = `${(1.0).toFixed(2)}s`;
                 }
-            }, 20); // Increased framerate to 50fps (20ms interval)
+            }, 20);
         }, 4400);
 
-        // Step 6: Show answer after 1 second of timer (original timing: 5500ms)
+        // Step 6: Show answer
         setTimeout(() => {
             timer.style.display = 'none';
-            aiCursor.style.display = 'none'; // Hide cursor
+            aiCursor.style.display = 'none';
             answer.style.display = 'block';
-            answer.style.color = 'var(--dark-color)';
-            answer.textContent = 'The Moon is approximately 384,400 kilometers away from Earth.';
+            answer.style.color = '#1d1d1f';
+            answer.textContent = 'The Moon is approximately 384,400 kilometers (238,855 miles) away from Earth.';
         }, 5500);
 
-        // Step 7: Show action buttons and hide footer
+        // Step 7: Show action buttons
         setTimeout(() => {
             actionButtons.style.display = 'flex';
             footer.style.display = 'none';
