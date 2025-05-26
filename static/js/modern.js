@@ -151,19 +151,21 @@ style.textContent = `
     .ai-query-box {
         opacity: 0;
         transition: opacity 0.3s ease, transform 0.3s ease;
-        display: none; /* Initially hidden */
+        display: none; 
         position: absolute;
-        top: 50%; /* Changed from bottom: 120% */
+        top: 50%; 
         left: 50%;
-        transform: translate(-50%, calc(-50% + 20px)) scale(0.95); /* Start centered H, slightly down V, and smaller */
+        transform: translate(-50%, calc(-50% + 20px)) scale(0.95); 
         background-color: #fff;
         border-radius: 8px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        width: 480px; /* Increased width */
+        width: 480px; 
         padding: 20px;
         z-index: 1000;
         text-align: left;
         color: #333;
+        min-height: 190px; /* Updated for consistent height with bottom content area */
+        box-sizing: border-box; 
     }
 
     .ai-query-box.show {
@@ -175,18 +177,20 @@ style.textContent = `
     .ai-query-content {
         display: flex;
         flex-direction: column;
+        /* min-height might be added here if needed, but ai-query-box min-height should cover it */
     }
 
     .ai-query-input {
         display: flex;
-        align-items: center;
+        align-items: flex-start; 
         border: 1px solid #e0e0e0;
         padding: 10px;
         border-radius: 6px;
-        margin-bottom: 15px;
-        min-height: 20px; /* Ensure it has some height */
+        margin-bottom: 15px; /* This margin is between input and bottom-content */
+        height: 75px; 
         user-select: none;
         pointer-events: none;
+        overflow: hidden; 
     }
 
     .ai-cursor {
@@ -233,13 +237,21 @@ style.textContent = `
         margin-top: 5px;
     }
 
-    .ai-action-buttons {
-        display: flex;
-        justify-content: flex-end; /* Align buttons to the right */
-        gap: 10px; /* Space between buttons */
-        margin-top: 15px;
+    .ai-query-bottom-content { /* New style for the wrapper */
+        height: 60px; /* Fixed height for footer/buttons area */
+        position: relative; /* For absolute positioning of children if needed, or just to establish stacking context */
+        display: flex; /* To help align children if necessary */
+        align-items: center; /* Vertically center content if it's shorter than 60px */
     }
 
+    .ai-action-buttons {
+        display: flex; /* Keep as flex for button layout */
+        justify-content: flex-end; 
+        gap: 10px; 
+        /* margin-top: 15px; Removed, as parent .ai-query-bottom-content handles spacing/height */
+        width: 100%; /* Ensure it takes full width of parent */
+    }
+    
     .ai-btn {
         padding: 8px 15px;
         border-radius: 5px;
@@ -276,9 +288,10 @@ style.textContent = `
         align-items: center;
         font-size: 0.8rem;
         color: #888;
-        margin-top: 15px; /* Added margin */
-        padding-top: 10px; /* Added padding */
-        border-top: 1px solid #f0f0f0; /* Added border */
+        /* margin-top: 15px; Removed, as parent .ai-query-bottom-content handles spacing/height */
+        padding-top: 10px; 
+        border-top: 1px solid #f0f0f0; 
+        width: 100%; /* Ensure it takes full width of parent */
     }
     
     .ai-model {
@@ -353,14 +366,16 @@ function createShiftKeyAnimation() {
                 <span class="ai-timer" style="display: none;"></span>
                 <span class="ai-answer" style="display: none;"></span>
             </div>
-            <div class="ai-action-buttons" style="display: none;">
-                <button class="ai-btn ai-btn-reject">✗ Reject</button>
-                <button class="ai-btn ai-btn-regenerate">↻ Regenerate</button>
-                <button class="ai-btn ai-btn-accept">✓ Accept</button>
-            </div>
-            <div class="ai-query-footer">
-                <span class="ai-model">Claude 4</span>
-                <span class="ai-hint">Press Enter to submit</span>
+            <div class="ai-query-bottom-content">
+                <div class="ai-action-buttons" style="display: none;">
+                    <button class="ai-btn ai-btn-reject">✗ Reject</button>
+                    <button class="ai-btn ai-btn-regenerate">↻ Regenerate</button>
+                    <button class="ai-btn ai-btn-accept">✓ Accept</button>
+                </div>
+                <div class="ai-query-footer">
+                    <span class="ai-model">Claude 4</span>
+                    <span class="ai-hint">Press Enter to submit</span>
+                </div>
             </div>
         </div>
     `;
@@ -429,22 +444,24 @@ function createShiftKeyAnimation() {
             timer.style.display = 'inline';
             timer.style.color = '#6c757d';
             
-            // Animate timer from 0.0s to 1.0s
+            // Animate timer from 0.00s to 1.00s
             let elapsed = 0;
             const timerInterval = setInterval(() => {
-                elapsed += 0.1;
-                timer.textContent = `${elapsed.toFixed(1)}s elapsed...`;
+                elapsed += 0.02; // Adjusted increment for 20ms interval
+                timer.textContent = `${elapsed.toFixed(2)}s elapsed...`; // Display two decimal places
                 if (elapsed >= 1.0) {
                     clearInterval(timerInterval);
+                    // Ensure final display is exactly 1.00 if needed, though >= 1.0 should catch it.
+                    timer.textContent = `${(1.0).toFixed(2)}s elapsed...`; 
                 }
-            }, 100);
+            }, 20); // Increased framerate to 50fps (20ms interval)
         }, 4400);
 
-        // Step 6: Show answer after 1 second
+        // Step 6: Show answer after 1 second of timer (original timing: 5500ms)
         setTimeout(() => {
             timer.style.display = 'none';
             aiCursor.style.display = 'none'; // Hide cursor
-            answer.style.display = 'inline';
+            answer.style.display = 'block';
             answer.style.color = 'var(--dark-color)';
             answer.textContent = 'The Moon is approximately 384,400 kilometers away from Earth.';
         }, 5500);
@@ -463,20 +480,15 @@ function createShiftKeyAnimation() {
         }, 8900);
     }
 
-    function typeQuery(text, element) {
-        let i = 0;
-        const typing = setInterval(() => {
-            if (i < text.length) {
-                element.textContent += text.charAt(i);
-                i++;
-            } else {
-                clearInterval(typing);
-            }
-        }, 50);
+    function typeQuery(text, element, index = 0) {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            setTimeout(() => typeQuery(text, element, index + 1), 50);
+        }
     }
 
     // Run animation immediately
-    runAnimation(); // Restored direct call to start the animation once immediately
+    runAnimation();
 
     // Repeat every 9.4 seconds
     setInterval(runAnimation, 9400);
@@ -491,225 +503,4 @@ if (document.readyState === 'loading') {
     setTimeout(createShiftKeyAnimation, 3000); // Changed delay to 3 seconds
 }
 
-// Physics simulation for floating icons
-class IconPhysics {
-    constructor() {
-        this.icons = [];
-        this.container = null;
-        this.animationId = null;
-        this.init();
-    }
-
-    init() {
-        // Wait for DOM
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.setup());
-        } else {
-            this.setup();
-        }
-    }
-
-    setup() {
-        this.container = document.querySelector('.hero-visual');
-        if (!this.container) {
-            console.warn("IconPhysics: '.hero-visual' container not found. Animation will not run.");
-            return;
-        }
-        
-        // Ensure the container has a non-zero size before proceeding
-        const containerRect = this.container.getBoundingClientRect();
-        if (containerRect.width === 0 || containerRect.height === 0) {
-             console.warn("IconPhysics: Container '.hero-visual' has zero width or height. Icons might not behave as expected initially.");
-             // Optionally, wait for resize or DOM update if this is a common issue
-        }
-
-        const windows = this.container.querySelectorAll('.window');
-        if (windows.length === 0) {
-            console.warn("IconPhysics: No '.window' elements found within '.hero-visual'.");
-            return;
-        }
-
-        this.icons = []; // Clear previous icons if any
-
-        windows.forEach((window, index) => {
-            const rect = window.getBoundingClientRect();
-            const radius = rect.width / 2; // Assuming icons are roughly circular
-
-            // Random initial velocity for each icon
-            const speed = 10 + Math.random() * 30; // Reduced speed from 50-150 to 10-40
-            const angle = Math.random() * 2 * Math.PI; // Random direction
-
-            // Bumpers (must match animate() method's bumpers)
-            const bumperLeft = 20;
-            const bumperTop = 20;
-            const bumperBottom = 20;
-            const bumperRight = 75;
-
-            // Calculate valid range for initial positions, considering bumpers and radius
-            const minX = bumperLeft + radius;
-            const maxX = containerRect.width - bumperRight - radius;
-            const minY = bumperTop + radius;
-            const maxY = containerRect.height - bumperBottom - radius;
-
-            // Ensure the spawn area is valid (e.g., container is not too small for icons + bumpers)
-            const spawnWidth = maxX - minX;
-            const spawnHeight = maxY - minY;
-
-            let initialX, initialY;
-            if (spawnWidth > 0 && spawnHeight > 0) {
-                initialX = minX + Math.random() * spawnWidth;
-                initialY = minY + Math.random() * spawnHeight;
-            } else {
-                // Fallback if spawn area is invalid (e.g., container too small)
-                // Place it in the center or at a default safe spot
-                initialX = containerRect.width / 2;
-                initialY = containerRect.height / 2;
-                console.warn(`IconPhysics: Spawn area for icon ${index} is invalid. Defaulting to center.`);
-            }
-            
-            const icon = {
-                element: window,
-                x: initialX, // Randomized X
-                y: initialY, // Randomized Y
-                vx: Math.cos(angle) * speed,
-                vy: Math.sin(angle) * speed,
-                fx: 0, // Force x
-                fy: 0, // Force y
-                radius: rect.width / 2,
-                mass: 1 + Math.random() * 0.5, // Varied mass for more interesting collisions
-                temperature: 1.0 // Temperature factor for Brownian motion
-            };
-            this.icons.push(icon);
-        });
-
-        // Start animation
-        this.animate();
-    }
-
-    animate() {
-        const containerRect = this.container.getBoundingClientRect();
-        const dt = 0.016; // ~60fps timestep
-        const kT = 0.5; // Thermal energy
-        const brownianForce = 8.0; // Brownian force magnitude (reduced)
-        const bumperLeft = 20;
-        const bumperTop = 20;
-        const bumperBottom = 20;
-        const bumperRight = 75; // Specific 75px bumper for the right edge
-        
-        // Reset forces and apply Brownian motion
-        this.icons.forEach(icon => {
-            // Random Brownian forces (white noise)
-            const angle = Math.random() * 2 * Math.PI;
-            const magnitude = Math.sqrt(-2 * Math.log(Math.random())) * brownianForce;
-            icon.fx = Math.cos(angle) * magnitude * icon.temperature;
-            icon.fy = Math.sin(angle) * magnitude * icon.temperature;
-        });
-
-        // Update velocities and positions using Verlet integration
-        this.icons.forEach(icon => {
-            // Update velocities with forces
-            icon.vx += (icon.fx / icon.mass) * dt;
-            icon.vy += (icon.fy / icon.mass) * dt;
-            
-            // NO DAMPING - removed the damping multiplication
-            
-            // Update positions
-            icon.x += icon.vx * dt;
-            icon.y += icon.vy * dt;
-
-            // Handle wall collisions with perfect elastic bounces and specific bumpers
-            if (icon.x - icon.radius <= bumperLeft) {
-                icon.x = icon.radius + bumperLeft;
-                icon.vx = Math.abs(icon.vx);
-            } else if (icon.x + icon.radius >= containerRect.width - bumperRight) {
-                icon.x = containerRect.width - icon.radius - bumperRight;
-                icon.vx = -Math.abs(icon.vx);
-            }
-            
-            if (icon.y - icon.radius <= bumperTop) {
-                icon.y = icon.radius + bumperTop;
-                icon.vy = Math.abs(icon.vy);
-            } else if (icon.y + icon.radius >= containerRect.height - bumperBottom) {
-                icon.y = containerRect.height - icon.radius - bumperBottom;
-                icon.vy = -Math.abs(icon.vy);
-            }
-        });
-
-        // Check collisions between particles (multiple passes for stability)
-        const collisionPasses = 5; // Number of passes to resolve collisions
-        for (let k = 0; k < collisionPasses; k++) {
-            for (let i = 0; i < this.icons.length; i++) {
-                for (let j = i + 1; j < this.icons.length; j++) {
-                    this.checkCollision(this.icons[i], this.icons[j]);
-                }
-            }
-        }
-
-        // Apply positions to DOM with sub-pixel precision
-        this.icons.forEach(icon => {
-            icon.element.style.transform = `translate3d(${icon.x - icon.radius}px, ${icon.y - icon.radius}px, 0)`;
-        });
-
-        // Continue animation
-        this.animationId = requestAnimationFrame(() => this.animate());
-    }
-
-    checkCollision(icon1, icon2) {
-        const dx = icon2.x - icon1.x;
-        const dy = icon2.y - icon1.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-        const minDistance = icon1.radius + icon2.radius;
-
-        if (distance < minDistance && distance > 0) {
-            // Normalize collision vector
-            const nx = dx / distance;
-            const ny = dy / distance;
-
-            // Relative velocity
-            const dvx = icon2.vx - icon1.vx;
-            const dvy = icon2.vy - icon1.vy;
-            const dvn = dvx * nx + dvy * ny;
-
-            // Don't resolve if already separating
-            if (dvn > 0) return;
-
-            // Impulse magnitude (elastic collision with masses)
-            const impulse = 2 * dvn / (1/icon1.mass + 1/icon2.mass);
-
-            // Apply impulse to velocities
-            icon1.vx += impulse * nx / icon1.mass;
-            icon1.vy += impulse * ny / icon1.mass;
-            icon2.vx -= impulse * nx / icon2.mass;
-            icon2.vy -= impulse * ny / icon2.mass;
-
-            // Separate particles to prevent overlap
-            const overlap = minDistance - distance;
-            const totalMass = icon1.mass + icon2.mass;
-            const sep1 = overlap * (icon2.mass / totalMass);
-            const sep2 = overlap * (icon1.mass / totalMass);
-            
-            icon1.x -= nx * sep1;
-            icon1.y -= ny * sep1;
-            icon2.x += nx * sep2;
-            icon2.y += ny * sep2;
-
-            // Add some randomness to prevent stuck particles
-            const perpX = -ny;
-            const perpY = nx;
-            const randomForce = (Math.random() - 0.5) * 0.5;
-            icon1.vx += perpX * randomForce;
-            icon1.vy += perpY * randomForce;
-            icon2.vx -= perpX * randomForce;
-            icon2.vy -= perpY * randomForce;
-        }
-    }
-
-    destroy() {
-        if (this.animationId) {
-            cancelAnimationFrame(this.animationId);
-        }
-    }
-}
-
-// Initialize physics simulation
-const iconPhysics = new IconPhysics(); 
+// Physics simulation for floating icons - ENTIRE CLASS AND INSTANTIATION REMOVED 

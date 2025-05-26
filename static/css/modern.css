@@ -366,71 +366,69 @@ section {
 }
 
 .hero-visual {
-    position: absolute;
-    top: 0;
-    left: 85%;
+    position: fixed;
+    top: 70px;
     right: 0;
-    bottom: 0;
-    z-index: 1;
-    overflow: hidden;
+    width: 260px;
+    height: calc(100vh - 70px);
+    z-index: 5;
+    background-color: transparent;
+    border-left: none;
+    box-shadow: none;
+    padding: 1.5rem;
+    overflow-y: auto;
+    display: block;
+}
+
+.logo-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    gap: 1rem;
+}
+
+.logo-gallery-tile {
+    aspect-ratio: 1 / 1;
+    background-color: white;
+    border: 1px solid #e9ecef;
+    border-radius: 10px;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.25s ease-in-out;
 }
 
-.floating-windows {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.window {
-    position: absolute;
-    background: white;
-    padding: 0.75rem;
-    border-radius: 50%;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-    font-family: var(--font-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: box-shadow 0.3s ease;
-    width: 48px;
-    height: 48px;
-    overflow: hidden;
-    cursor: grab;
-}
-
-.window:active {
-    cursor: grabbing;
-}
-
-.window:hover {
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
-    z-index: 20;
+.logo-gallery-tile:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    background-color: white;
+    border-color: #d0d0d0;
 }
 
 .app-icon {
-    width: 28px;
-    height: 28px;
+    width: 100%;
+    height: 100%;
+    max-width: 40px;
+    max-height: 40px;
     object-fit: contain;
 }
 
-/* Special styling for Salesforce icon since it's already circular */
-.window.salesforce .app-icon {
-    width: 36px;
-    height: 36px;
+.logo-gallery-tile .salesforce .app-icon {
+    /* This selector won't work as .salesforce is not on the tile. Assuming it was for a specific icon wrapper. */
+    /* If salesforce icon needs to be bigger, it needs a specific class or target its src */
 }
 
 .generic-icon {
-    width: 28px;
-    height: 28px;
+    width: 100%;
+    height: 100%;
+    max-width: 38px;
+    max-height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
     color: white;
 }
 
@@ -466,27 +464,14 @@ section {
 }
 
 .generic-icon.github-color svg {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 }
 
 .app-label {
     font-weight: 600;
     color: var(--dark-color);
 }
-
-.window.outlook { top: 8%; left: 15%; }
-.window.slack { top: 15%; left: 60%; }
-.window.salesforce { top: 22%; left: 25%; }
-.window.powerpoint { top: 28%; left: 70%; }
-.window.notion { top: 35%; left: 10%; }
-.window.teams { top: 42%; left: 50%; }
-.window.excel { top: 48%; left: 20%; }
-.window.gmail { top: 55%; left: 65%; }
-.window.zoom { top: 62%; left: 15%; }
-.window.jira { top: 68%; left: 55%; }
-.window.github { top: 75%; left: 25%; }
-.window.discord { top: 82%; left: 60%; }
 
 /* Problem Section */
 .problem {
@@ -988,52 +973,79 @@ section {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-    
-    .nav-toggle {
-        display: flex;
-    }
-    
-    .hero-content {
-        margin: 0 auto;
-        max-width: 90%;
-    }
-    
-    .hero-cta {
-        flex-direction: column;
-        align-items: center;
-    }
-    
+@media (max-width: 1200px) { /* Larger tablets and small desktops */
     .hero-visual {
-        display: none;
+        width: 220px; /* Slightly narrower panel */
+        padding: 1.25rem;
+    }
+    .logo-gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+        gap: 0.75rem;
+    }
+    .logo-gallery-tile {
+        padding: 0.4rem;
+    }
+    .app-icon, .generic-icon {
+        max-width: 35px;
+        max-height: 35px;
+    }
+    .generic-icon {
+        font-size: 18px;
+    }
+    .generic-icon.github-color svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+@media (max-width: 992px) { /* Tablets */
+    .hero-visual {
+        display: none; /* Hide the gallery panel */
+    }
+    .hero-content {
+        max-width: 90%; /* Allow hero content to take more width */
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media (max-width: 768px) { /* Mobile devices */
+    /* .hero-visual is already hidden */
+    .hero-content {
+        padding-top: 4rem; /* Adjusted from 1rem previously */
+        min-height: calc(75vh - 4rem); /* Adjust height if needed */
+    }
+    .hero-statement-container {
+        margin-bottom: 2rem;
+        padding: 0 0.5rem; /* Less padding on very small screens */
+    }
+    .hero-main-statement {
+        font-size: clamp(2rem, 10vw, 3rem); /* Adjusted mobile title size */
+    }
+    .hero-sub-statement {
+        font-size: clamp(0.85rem, 4vw, 1rem);
+    }
+    /* .hero-key-benefits are hidden, so no mobile styles needed for them */
+
+    .demo-animation-container {
+        margin-top: 2rem;
+        min-height: 150px; /* Existing mobile style */
     }
     
-    .solution-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .solution-list {
-        text-align: left;
+    .ai-query-box { /* Existing mobile style */
+        width: 95%;
         max-width: 400px;
-        margin: 2rem auto 0;
+        padding: 1rem;
     }
     
-    .pricing-card.featured {
-        transform: scale(1);
+    .ai-query-input { /* Existing mobile style */
+        min-height: 50px;
+        padding: 0.75rem;
     }
     
-    .cta-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .download-btn {
-        width: 250px;
-        justify-content: center;
+    .ai-btn { /* Existing mobile style */
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
     }
 }
 

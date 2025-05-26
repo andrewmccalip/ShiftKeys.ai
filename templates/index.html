@@ -17,11 +17,9 @@
             </div>
             <div class="nav-links">
                 <a href="#home" class="nav-link">Home</a>
-                <a href="#problem" class="nav-link">Problem</a>
-                <a href="#solution" class="nav-link">Solution</a>
-                <a href="#features" class="nav-link">Features</a>
                 <a href="#demo" class="nav-link">Demo</a>
                 <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#cta" class="nav-link">Download</a>
                 <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="nav-link nav-cta">Login</a>
             </div>
             <div class="nav-toggle">
@@ -61,50 +59,53 @@
                 <a href="#pricing" class="btn btn-secondary">Get Early Access</a>
             </div>
         </div>
+        <!-- 
         <div class="hero-visual">
-            <div class="floating-windows">
-                <div class="window outlook">
+            <div class="logo-gallery-grid">
+                <div class="logo-gallery-tile">
                     <img src="{{ url_for('static', filename='images/outlook_icon.png') }}" alt="Outlook" class="app-icon">
                 </div>
-                <div class="window slack">
+                <div class="logo-gallery-tile">
                     <img src="{{ url_for('static', filename='images/slack.webp') }}" alt="Slack" class="app-icon">
                 </div>
-                <div class="window salesforce">
+                <div class="logo-gallery-tile">
                     <img src="{{ url_for('static', filename='images/salesforce_icon.png') }}" alt="Salesforce" class="app-icon">
                 </div>
-                <div class="window powerpoint">
+                <div class="logo-gallery-tile">
                     <img src="{{ url_for('static', filename='images/powerpoint_icon.jpg') }}" alt="PowerPoint" class="app-icon">
                 </div>
-                <div class="window notion">
+                <div class="logo-gallery-tile">
                     <img src="{{ url_for('static', filename='images/notion_icon.png') }}" alt="Notion" class="app-icon">
                 </div>
-                <div class="window teams">
+                <div class="logo-gallery-tile">
                     <div class="generic-icon teams-color">T</div>
                 </div>
-                <div class="window excel">
+                <div class="logo-gallery-tile">
                     <div class="generic-icon excel-color">E</div>
                 </div>
-                <div class="window gmail">
+                <div class="logo-gallery-tile">
                     <div class="generic-icon gmail-color">G</div>
                 </div>
-                <div class="window zoom">
+                <div class="logo-gallery-tile">
                     <div class="generic-icon zoom-color">Z</div>
                 </div>
-                <div class="window jira">
+                <div class="logo-gallery-tile">
                     <div class="generic-icon jira-color">J</div>
                 </div>
-                <div class="window github">
+                <div class="logo-gallery-tile">
                     <div class="generic-icon github-color">
                         <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
                             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.18.7.8.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
                         </svg>
                     </div>
                 </div>
-                <div class="window discord">
+                <div class="logo-gallery-tile">
                     <img src="{{ url_for('static', filename='images/discord.png') }}" alt="Discord" class="app-icon">
                 </div>
+                 <!-- Add more tiles as needed -->
             </div>
         </div>
+        -->
     </section>
 
     <!-- Problem Section -->
@@ -265,50 +266,38 @@
                     <div class="pricing-card">
                         <h3 class="pricing-tier">Free</h3>
                         <div class="pricing-price">
-                            <span class="currency">$</span>
-                            <span class="amount">0</span>
-                            <span class="period">/month</span>
+                            <span>$0 per month</span> 
                         </div>
                         <ul class="pricing-features">
-                            <li>GPT-3.5 Turbo</li>
-                            <li>100 prompts/day</li>
-                            <li>Basic context memory</li>
-                            <li>All app integration</li>
+                            <li>15 calls / 15min</li>
+                            <li>300+ models</li>
                         </ul>
-                        <a href="#" class="btn btn-outline">Get Started</a>
+                        <a href="#" class="btn btn-outline disabled-btn">Current Plan (Beta)</a>
                     </div>
                     <div class="pricing-card featured">
                         <div class="badge">Most Popular</div>
-                        <h3 class="pricing-tier">Pro</h3>
+                        <h3 class="pricing-tier">Standard</h3>
                         <div class="pricing-price">
-                            <span class="currency">$</span>
-                            <span class="amount">5</span>
-                            <span class="period">/month</span>
+                            <span>$5/month</span>
                         </div>
                         <ul class="pricing-features">
-                            <li>GPT-4 & Claude 3</li>
-                            <li>Unlimited prompts</li>
-                            <li>Advanced context memory</li>
-                            <li>Custom shortcuts</li>
-                            <li>Priority support</li>
+                            <li>250 calls / day</li>
+                            <li>300+ models</li>
+                            <li>Unlimited bring-your-own-key calls</li>
                         </ul>
-                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                        <a href="https://buy.stripe.com/test_dRmeVdbko4sN14W4BrdUY03" class="btn btn-primary" target="_blank">Choose Standard</a>
                     </div>
                     <div class="pricing-card">
-                        <h3 class="pricing-tier">Team</h3>
+                        <h3 class="pricing-tier">Unlimited</h3>
                         <div class="pricing-price">
-                            <span class="currency">$</span>
-                            <span class="amount">10</span>
-                            <span class="period">/user/month</span>
+                            <span>$10/month</span>
                         </div>
                         <ul class="pricing-features">
-                            <li>Everything in Pro</li>
-                            <li>Team collaboration</li>
-                            <li>Admin dashboard</li>
-                            <li>Custom models</li>
-                            <li>SSO & compliance</li>
+                            <li>Unlimited calls</li>
+                            <li>300+ models</li>
+                            <li>Unlimited bring-your-own-key calls</li>
                         </ul>
-                        <a href="#" class="btn btn-outline">Contact Sales</a>
+                        <a href="https://buy.stripe.com/test_cNi00jdsw8J3290fg5dUY04" class="btn btn-outline" target="_blank">Choose Unlimited</a>
                     </div>
                 </div>
             </div>
@@ -320,6 +309,7 @@
         <div class="section-container">
             <h2 class="cta-title">Want Early Access?</h2>
             <p class="cta-subtitle">You're here early. That means you get to help shape this thing.</p>
+            <p class="cta-warning">We're still getting our certs, please click through install anyway</p>            
             <div class="cta-buttons">
                 <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-btn windows">
                     <svg class="os-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
