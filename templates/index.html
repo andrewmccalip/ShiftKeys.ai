@@ -3,223 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShiftKeys.ai - Access</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>ShiftKeys.ai - AI Outside the Browser</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=2.8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/modern.css') }}?v=2.8">
 </head>
 <body>
-    <div id="password-gate-container">
-        <div class="password-form">
-            <h2>Enter Access Code</h2>
-            <input type="password" id="password-input" placeholder="Password">
-            <button id="password-submit">Enter</button>
-            <p id="password-error" class="error-message"></p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">ShiftKeys.ai</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#problem" class="nav-link">Problem</a>
+                <a href="#solution" class="nav-link">Solution</a>
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#demo" class="nav-link">Demo</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="nav-link nav-cta">Login</a>
+            </div>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-        <footer class="site-footer">
-            <p>Shiftkeys Private Invite</p>
-        </footer>
-    </div>
+    </nav>
 
-    <div id="main-site-content" style="display: none;"> 
-        <div class="login-container">
-            <a href="https://billing.stripe.com/p/login/test_6oU5kD4W0gbvdRIaZPdUY00" class="login-button">Login</a>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-questions-background">
+                <span class="bg-question">Why is AI stuck in the browser?</span>
+                <span class="bg-question">Why isn't it more like copy / paste?</span>
+                <span class="bg-question">Why do I have to wait 10 seconds for a reply?</span>
+                <span class="bg-question">Why can't I use it in Slack?</span>
+                <span class="bg-question">Why can't I add to context without copy / paste?</span>
+            </div>
+            <h1 class="hero-title">The future of AI is outside the browser</h1>
+            
+            <div class="demo-animation-container">
+                <!-- Animation will be inserted here by JavaScript -->
+            </div>
+            <div class="hero-shortcut">
+                <span class="shortcut-key">Left Shift</span>
+                <span class="plus">+</span>
+                <span class="shortcut-key">Right Shift</span>
+                <span class="equals">=</span>
+                <span class="shortcut-text">AI Everywhere</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#demo" class="btn btn-primary">Watch Demo</a>
+                <a href="#pricing" class="btn btn-secondary">Get Early Access</a>
+            </div>
         </div>
-        <div class="container">
-            <div class="content">
-                <h1>ShiftKeys.ai</h1>
-                <p class="subtitle">simple ui for ai</p>
-                <div class="dialog-popup hidden">
-                    <div class="dialog-content">
-                        <div class="dialog-input">
-                            <span class="prompt">></span>
-                            <span class="typed-text">ask anything, anywhere</span>
-                            <span class="cursor"></span>
-                        </div>
+        <div class="hero-visual">
+            <div class="floating-windows">
+                <div class="window outlook">
+                    <img src="{{ url_for('static', filename='images/outlook_icon.png') }}" alt="Outlook" class="app-icon">
+                </div>
+                <div class="window slack">
+                    <img src="{{ url_for('static', filename='images/slack.webp') }}" alt="Slack" class="app-icon">
+                </div>
+                <div class="window salesforce">
+                    <img src="{{ url_for('static', filename='images/salesforce_icon.png') }}" alt="Salesforce" class="app-icon">
+                </div>
+                <div class="window powerpoint">
+                    <img src="{{ url_for('static', filename='images/powerpoint_icon.jpg') }}" alt="PowerPoint" class="app-icon">
+                </div>
+                <div class="window notion">
+                    <img src="{{ url_for('static', filename='images/notion_icon.png') }}" alt="Notion" class="app-icon">
+                </div>
+                <div class="window teams">
+                    <div class="generic-icon teams-color">T</div>
+                </div>
+                <div class="window excel">
+                    <div class="generic-icon excel-color">E</div>
+                </div>
+                <div class="window gmail">
+                    <div class="generic-icon gmail-color">G</div>
+                </div>
+                <div class="window zoom">
+                    <div class="generic-icon zoom-color">Z</div>
+                </div>
+                <div class="window jira">
+                    <div class="generic-icon jira-color">J</div>
+                </div>
+                <div class="window github">
+                    <div class="generic-icon github-color">
+                        <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.21 11.39.6.11.79-.26.79-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.77.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23.96-.27 1.98-.4 3-.4s2.04.13 3 .4c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.18.7.8.58C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+                        </svg>
                     </div>
                 </div>
-                <div class="keyboard">
-                    <!-- Row 1 -->
-                    <div class="key esc">ESC</div>
-                    <div class="key">F1</div>
-                    <div class="key">F2</div>
-                    <div class="key">F3</div>
-                    <div class="key">F4</div>
-                    <div class="key">F5</div>
-                    <div class="key">F6</div>
-                    <div class="key">F7</div>
-                    <div class="key">F8</div>
-                    <div class="key">F9</div>
-                    <div class="key">F10</div>
-                    <div class="key">F11</div>
-                    <div class="key">F12</div>
-                    
-                    <!-- Row 2 -->
-                    <div class="key">~</div>
-                    <div class="key">1</div>
-                    <div class="key">2</div>
-                    <div class="key">3</div>
-                    <div class="key">4</div>
-                    <div class="key">5</div>
-                    <div class="key">6</div>
-                    <div class="key">7</div>
-                    <div class="key">8</div>
-                    <div class="key">9</div>
-                    <div class="key">0</div>
-                    <div class="key">-</div>
-                    <div class="key">+</div>
-                    <div class="key backspace">⌫</div>
-                    
-                    <!-- Row 3 -->
-                    <div class="key tab">Tab</div>
-                    <div class="key">Q</div>
-                    <div class="key">W</div>
-                    <div class="key">E</div>
-                    <div class="key">R</div>
-                    <div class="key">T</div>
-                    <div class="key">Y</div>
-                    <div class="key">U</div>
-                    <div class="key">I</div>
-                    <div class="key">O</div>
-                    <div class="key">P</div>
-                    <div class="key">[</div>
-                    <div class="key">]</div>
-                    <div class="key backslash">\</div>
-                    
-                    <!-- Row 4 -->
-                    <div class="key caps">Caps</div>
-                    <div class="key">A</div>
-                    <div class="key">S</div>
-                    <div class="key">D</div>
-                    <div class="key">F</div>
-                    <div class="key">G</div>
-                    <div class="key">H</div>
-                    <div class="key">J</div>
-                    <div class="key">K</div>
-                    <div class="key">L</div>
-                    <div class="key">;</div>
-                    <div class="key">'</div>
-                    <div class="key enter">Enter</div>
-                    
-                    <!-- Row 5 -->
-                    <div class="key shift left-shift">Shift</div>
-                    <div class="key">Z</div>
-                    <div class="key">X</div>
-                    <div class="key">C</div>
-                    <div class="key">V</div>
-                    <div class="key">B</div>
-                    <div class="key">N</div>
-                    <div class="key">M</div>
-                    <div class="key">,</div>
-                    <div class="key">.</div>
-                    <div class="key">/</div>
-                    <div class="key shift right-shift">Shift</div>
-                    
-                    <!-- Row 6 -->
-                    <div class="key ctrl">Ctrl</div>
-                    <div class="key">Fn</div>
-                    <div class="key win">Win</div>
-                    <div class="key alt">Alt</div>
-                    <div class="key space">Space</div>
-                    <div class="key alt">Alt</div>
-                    <div class="key">Menu</div>
-                    <div class="key ctrl">Ctrl</div>
-                </div>
-                <p class="usage-hint">Press <span class="key-combo">Left Shift</span> + <span class="key-combo">Right Shift</span> to activate ShiftKeys.ai anywhere on your desktop</p>
-                <div class="download-options">
-                    <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-link">
-                        <img src="{{ url_for('static', filename='download_windows.png') }}" alt="Download for Windows">
-                    </a>
-                    <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.pkg" class="download-link">
-                        <img src="{{ url_for('static', filename='download_mac.png') }}" alt="Download for Mac">
-                    </a>
+                <div class="window discord">
+                    <img src="{{ url_for('static', filename='images/discord.png') }}" alt="Discord" class="app-icon">
                 </div>
             </div>
         </div>
-    </div> 
+    </section>
 
-    <script>
-        // Password gate logic
-        const passwordGateContainer = document.getElementById('password-gate-container');
-        const mainSiteContent = document.getElementById('main-site-content');
-        const passwordInput = document.getElementById('password-input');
-        const passwordSubmit = document.getElementById('password-submit');
-        const passwordError = document.getElementById('password-error');
-        const correctPassword = "shiftpassword123shift";
+    <!-- Problem Section -->
+    <section id="problem" class="problem">
+        <div class="section-container">
+            <h2 class="section-title">The AI UX is Broken</h2>
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <div class="problem-icon">🔄</div>
+                    <h3>Constant Context Switching</h3>
+                    <p>Copy from your app. Switch to ChatGPT. Paste. Wait. Copy result. Switch back. Paste. Repeat.</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">🧩</div>
+                    <h3>Fragmented Experience</h3>
+                    <p>Different AI tools for different apps. No consistency. No memory. No flow.</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">⏰</div>
+                    <h3>Workflow Disruption</h3>
+                    <p>Every AI interaction breaks your concentration. Your train of thought derails.</p>
+                </div>
+            </div>
+            <div class="problem-quote">
+                <blockquote>
+                    "We spend a fortune on AI tools, yet the experience is still broken. Constantly switching between apps and browser tabs just to use AI? It's exhausting and kills productivity."
+                </blockquote>
+            </div>
+        </div>
+    </section>
 
-        passwordSubmit.addEventListener('click', function() {
-            if (passwordInput.value === correctPassword) {
-                passwordGateContainer.style.display = 'none';
-                mainSiteContent.style.display = 'block'; 
-                // Initialize main site JS after content is visible
-                initializeMainSiteLogic(); 
-            } else {
-                passwordError.textContent = 'Incorrect password. Please try again.';
-                passwordInput.value = '';
-                passwordInput.focus();
-            }
-        });
-        
-        // Allow Enter key submission for password
-        passwordInput.addEventListener('keypress', function(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault(); // Prevent default form submission if it were a form
-                passwordSubmit.click();
-            }
-        });
+    <!-- Solution Section -->
+    <section id="solution" class="solution">
+        <div class="section-container">
+            <h2 class="section-title">AI That Lives in Your OS</h2>
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h3>One Interface. Every App. Zero Friction.</h3>
+                    <p>ShiftKeys.ai isn't another browser tab. It's not a plugin. It's not an app you switch to.</p>
+                    <p>It's AI that lives at the operating system level — working everywhere your keyboard works.</p>
+                    <ul class="solution-list">
+                        <li>Works in Slack, Excel, Outlook, Twitter, PowerPoint — anywhere</li>
+                        <li>No plugins, no integrations, no setup per app</li>
+                        <li>500ms away, always</li>
+                        <li>Remembers context between prompts</li>
+                        <li>Your fingers never leave the keyboard</li>
+                    </ul>
+                </div>
+                <div class="solution-visual">
+                    <div class="os-integration">
+                        <div class="os-layer">Operating System</div>
+                        <div class="ai-layer">ShiftKeys.ai</div>
+                        <div class="apps-layer">
+                            <span>All Your Apps</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Main site logic (needs to be callable after password success)
-        function initializeMainSiteLogic() {
-            const shiftKeys = document.querySelectorAll('.shift');
-            const dialogPopup = document.querySelector('.dialog-popup');
-            let isLeftShiftDown = false;
-            let isRightShiftDown = false;
-            let dialogActivated = false; 
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="section-container">
+            <h2 class="section-title">Thoughtfully Simple</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Access</h3>
+                    <p>Just press both shift keys. AI appears instantly, right where you're typing.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Contextual Memory</h3>
+                    <p>Maintains context across prompts. Reference previous outputs without re-explaining.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Surgical Edits</h3>
+                    <p>From single-line tweaks to full document rewrites. You control the scope.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Model Agnostic</h3>
+                    <p>Use GPT-4, Claude, or any model. Switch anytime. Your interface stays the same.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Context Pile</h3>
+                    <p>Build context across multiple programs as you work. Select text and double-tap shift to add anything to your AI's memory.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Program Intelligence</h3>
+                    <p>AI adapts its behavior to match the program you're in. Excel formulas in Excel, code in VS Code, emails in Outlook.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            shiftKeys.forEach(key => {
-                key.classList.add('blink');
-            });
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="section-container">
+            <h2 class="section-title">See It in Action</h2>
+            <div class="demo-content">
+                <div class="demo-video-container">
+                    <video id="demo-video" controls poster="{{ url_for('static', filename='images/video-poster.jpg') }}">
+                        <source src="{{ url_for('static', filename='media/demo.mp4') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <button class="demo-play-btn" id="play-button">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="demo-shortcuts">
+                    <h3>Try These Shortcuts</h3>
+                    <div class="shortcut-item">
+                        <div class="shortcut-combo">
+                            <span class="key">Left Shift</span> + <span class="key">Right Shift</span>
+                        </div>
+                        <span class="shortcut-desc">Open AI prompt</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <div class="shortcut-combo">
+                            <span class="key">Shift</span> <span class="double-tap">× 2</span>
+                        </div>
+                        <span class="shortcut-desc">Add selection to context</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            function checkShiftState() {
-                if (isLeftShiftDown && isRightShiftDown && !dialogActivated) {
-                    dialogPopup.classList.remove('hidden');
-                    dialogPopup.classList.add('visible');
-                    dialogActivated = true; 
-                }
-            }
+    <!-- Testimonial Section -->
+    <section id="testimonial" class="testimonial">
+        <div class="section-container">
+            <div class="testimonial-content">
+                <blockquote class="founder-quote">
+                    "I was sick of switching to ChatGPT for every little tweak in Outlook or Slack. I wanted AI to feel like a built-in feature of my OS — as easy as spell check or copy and paste. So, I built it."
+                </blockquote>
+                <p class="founder-note">This is the first tool I truly love and use daily. After friends saw it, they urged me to release it.</p>
+            </div>
+        </div>
+    </section>
 
-            document.addEventListener('keydown', function(event) {
-                if (dialogActivated && !event.target.closest('.dialog-input')) return; 
-                if (event.target === passwordInput) return; // Ignore keydown if focus is on password input
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="section-container">
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="pricing-subtitle">Choose the plan that fits your workflow</p>
+            <div class="pricing-wrapper">
+                <div class="beta-banner-overlay">
+                    <span class="beta-text">🎉 Everything Free During Beta!</span>
+                </div>
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3 class="pricing-tier">Free</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">0</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>GPT-3.5 Turbo</li>
+                            <li>100 prompts/day</li>
+                            <li>Basic context memory</li>
+                            <li>All app integration</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Get Started</a>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="badge">Most Popular</div>
+                        <h3 class="pricing-tier">Pro</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">5</span>
+                            <span class="period">/month</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>GPT-4 & Claude 3</li>
+                            <li>Unlimited prompts</li>
+                            <li>Advanced context memory</li>
+                            <li>Custom shortcuts</li>
+                            <li>Priority support</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                    </div>
+                    <div class="pricing-card">
+                        <h3 class="pricing-tier">Team</h3>
+                        <div class="pricing-price">
+                            <span class="currency">$</span>
+                            <span class="amount">10</span>
+                            <span class="period">/user/month</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>Everything in Pro</li>
+                            <li>Team collaboration</li>
+                            <li>Admin dashboard</li>
+                            <li>Custom models</li>
+                            <li>SSO & compliance</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                if (event.code === 'ShiftLeft') {
-                    isLeftShiftDown = true;
-                    checkShiftState();
-                } else if (event.code === 'ShiftRight') {
-                    isRightShiftDown = true;
-                    checkShiftState();
-                }
-            });
+    <!-- CTA Section -->
+    <section id="cta" class="cta">
+        <div class="section-container">
+            <h2 class="cta-title">Want Early Access?</h2>
+            <p class="cta-subtitle">You're here early. That means you get to help shape this thing.</p>
+            <div class="cta-buttons">
+                <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.exe" class="download-btn windows">
+                    <svg class="os-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.7 22L0 20.6v-7.2h10.7V22zM12.3 22l10.7-1.5v-7.1H12.3V22zM0 12.3h10.7V3.6L0 2.2v10.1zM12.3 12.3H23V3.6L12.3 2v10.3z" fill="currentColor"/>
+                    </svg>
+                    Download for Windows
+                </a>
+                <a href="https://storage.cloud.google.com/shiftkeys/shiftkeys-setup.pkg" class="download-btn mac">
+                    <svg class="os-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.32 17.43c-.32.83-.68 1.59-1.09 2.29-.56.96-1.02 1.62-1.38 1.98-.55.58-1.15.88-1.79.9-.46 0-1.01-.13-1.66-.39-.65-.26-1.24-.39-1.78-.39-.57 0-1.18.13-1.83.39-.65.26-1.18.4-1.58.42-.61.03-1.22-.24-1.82-.82-.39-.38-.87-1.04-1.45-1.98-.62-1.01-1.13-2.18-1.53-3.51C2.01 14.86 1.81 13.44 1.81 12.06c0-1.57.34-2.92 1.02-4.06.54-.91 1.25-1.62 2.15-2.15.9-.53 1.87-.8 2.91-.81.57 0 1.32.18 2.25.53.93.35 1.52.53 1.79.53.2 0 .86-.21 2-.62 1.07-.39 1.97-.55 2.71-.48 2 .16 3.51.95 4.5 2.37-1.79 1.08-2.67 2.6-2.66 4.54.01 1.51.57 2.77 1.66 3.77.5.46 1.05.82 1.68.95-.13.39-.28.77-.44 1.13zM14.94 1.04c0 1.19-.43 2.29-1.3 3.31-.95 1.12-2.11 1.77-3.36 1.67-.02-.13-.03-.26-.03-.4 0-1.14.49-2.36 1.37-3.35.44-.5 1-1.02 1.68-1.34.68-.32 1.32-.49 1.92-.51.02.14.02.28.02.42z" fill="currentColor"/>
+                    </svg>
+                    Download for Mac
+                </a>
+            </div>
+        </div>
+    </section>
 
-            document.addEventListener('keyup', function(event) {
-                if (dialogActivated && !event.target.closest('.dialog-input')) return;
-                if (event.target === passwordInput) return; // Ignore keyup if focus is on password input
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">ShiftKeys.ai</div>
+            <p class="footer-tagline">AI should be as simple as copy-paste.</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy</a>
+                <a href="#terms">Terms</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <p class="footer-copyright">© 2024 ShiftKeys.ai. All rights reserved.</p>
+        </div>
+    </footer>
 
-                if (event.code === 'ShiftLeft') {
-                    isLeftShiftDown = false;
-                } else if (event.code === 'ShiftRight') {
-                    isRightShiftDown = false;
-                }
-            });
-            
-            window.addEventListener('blur', () => {
-                if (!dialogActivated) { 
-                    isLeftShiftDown = false;
-                    isRightShiftDown = false;
-                }
-            });
-        }
-        
-        // If you need to run something on initial load for the password page, it would go here.
-        // For now, the main site logic is deferred.
-    </script>
+    <script src="{{ url_for('static', filename='js/modern.js') }}?v=3.0"></script>
 </body>
 </html> 
