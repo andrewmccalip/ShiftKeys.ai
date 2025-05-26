@@ -206,7 +206,8 @@ style.textContent = `
 
     .ai-placeholder {
         color: #aaa;
-        font-style: italic;
+        font-style: normal;
+        font-weight: normal;
     }
 
     .ai-query-text {
@@ -215,16 +216,20 @@ style.textContent = `
         color: #333;
         user-select: none;
         pointer-events: none;
+        font-style: normal;
+        font-weight: normal;
     }
     
     .ai-timer {
         color: #6c757d;
-        font-style: italic;
+        font-style: normal;
+        font-weight: normal;
     }
 
     .ai-answer {
         color: var(--dark-color, #333);
-        font-weight: bold;
+        font-style: normal;
+        font-weight: normal;
         margin-top: 5px;
     }
 
@@ -423,7 +428,6 @@ function createShiftKeyAnimation() {
             aiCursor.style.display = 'none'; // Hide cursor
             timer.style.display = 'inline';
             timer.style.color = '#6c757d';
-            timer.style.fontStyle = 'italic';
             
             // Animate timer from 0.0s to 1.0s
             let elapsed = 0;

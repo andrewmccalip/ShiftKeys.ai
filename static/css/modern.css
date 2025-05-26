@@ -75,11 +75,27 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
 }
 
+.nav-brand-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
 .nav-brand {
     font-family: var(--font-primary);
     font-size: 1.5rem;
     font-weight: bold;
     color: var(--dark-color);
+}
+
+.nav-tagline {
+    font-family: var(--font-secondary);
+    font-size: 0.8rem;
+    color: var(--gray-color);
+    text-transform: lowercase;
+    font-weight: 400;
+    opacity: 0.8;
+    padding-bottom: 2px;
 }
 
 .nav-links {
@@ -146,6 +162,58 @@ h1, h2, h3, h4, h5, h6 {
     transition: var(--transition);
 }
 
+/* Hero Statement Section */
+.hero-statement-container {
+    text-align: center;
+    margin-bottom: 3rem;
+    max-width: 700px; /* Adjusted for slightly more text */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-main-statement {
+    font-family: var(--font-primary);
+    font-size: clamp(3rem, 7vw, 5rem); /* Made it larger and bolder */
+    font-weight: 600; /* Bolder */
+    color: var(--dark-color);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    /* Optional: Add a subtle text shadow for depth */
+    /* text-shadow: 0 2px 4px rgba(0,0,0,0.05); */
+}
+
+.hero-sub-statement {
+    font-family: var(--font-secondary);
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: var(--gray-color);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 600px; /* Constrain width for readability */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-key-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto 2rem auto;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem 2rem; /* Row and column gap */
+    max-width: 600px;
+}
+
+.hero-key-benefits li {
+    font-family: var(--font-secondary);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: var(--dark-color);
+    font-weight: 500;
+    display: inline-block; /* Or flex item if you prefer */
+    /* white-space: nowrap; */ /* Optional: if you want to prevent wrapping on single benefits */
+}
+
 /* Sections */
 section {
     padding: 5rem 0;
@@ -189,56 +257,13 @@ section {
     position: relative;
     z-index: 10;
     text-align: center;
-    max-width: 600px;
+    max-width: 900px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    min-height: calc(80vh - 4rem);
+    min-height: calc(85vh - 4rem);
     justify-content: center;
-    margin-top: 100px;
-}
-
-/* Added for background questions */
-.hero-questions-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem; /* Spacing between questions */
-    padding: 1rem; /* Padding around the group of questions */
-    z-index: 15; /* Behind the main title */
-    overflow: hidden; /* Prevent questions from spilling if too many/large */
-    pointer-events: none; /* Make sure they don't interfere with mouse events */
-}
-
-.bg-question {
-    font-family: var(--font-secondary); /* Use a standard sans-serif for readability */
-    font-size: clamp(0.7rem, 1.5vw, 0.9rem); /* Small, responsive font size */
-    color: var(--gray-color); /* Use a theme color */
-    opacity: 0.3; /* Very subtle */
-    padding: 0.25rem 0.5rem;
-    white-space: nowrap; /* Keep questions on one line if possible, flex wrap will handle overflow */
-    /* Optional: Add a very subtle border or background if needed for blending, but start without */
-    /* border: 1px solid rgba(0,0,0,0.05); */
-    /* border-radius: 4px; */
-}
-
-.hero-title {
-    font-family: var(--font-primary);
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 400;
-    color: #333333;
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    text-align: center;
-    margin-bottom: 1.5rem;
-    position: relative;
-    z-index: 20;
+    padding-top: 7rem;
 }
 
 .hero-subtitle {
@@ -462,8 +487,6 @@ section {
 .window.jira { top: 68%; left: 55%; }
 .window.github { top: 75%; left: 25%; }
 .window.discord { top: 82%; left: 60%; }
-
-
 
 /* Problem Section */
 .problem {
@@ -1235,7 +1258,7 @@ section {
     color: #6c757d;
 }
 
-/* Mobile adjustments for AI query box */
+/* Mobile adjustments for AI query box and floating questions */
 @media (max-width: 768px) {
     .demo-animation-container {
         margin-top: 2rem;
@@ -1257,4 +1280,63 @@ section {
         padding: 0.25rem 0.5rem;
         font-size: 0.75rem;
     }
+    
+    .hero-questions {
+        margin-bottom: 2rem;
+        padding: 0 1rem;
+    }
+    
+    .main-question {
+        font-size: clamp(1.8rem, 7vw, 2.8rem);
+        margin-bottom: 1.5rem;
+    }
+    
+    .supporting-questions {
+        gap: 0.6rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .sub-question {
+        font-size: clamp(0.9rem, 3vw, 1.1rem);
+    }
+    
+    .answer-preview {
+        padding: 1rem 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .answer-text {
+        font-size: clamp(1rem, 3.5vw, 1.2rem);
+    }
+}
+
+/* Mobile adjustments for Hero Statement Section */
+.hero-statement-container {
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.hero-main-statement {
+    font-size: clamp(2.2rem, 10vw, 3.5rem);
+    margin-bottom: 0.75rem;
+}
+
+.hero-sub-statement {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+    margin-bottom: 1.5rem;
+}
+
+.hero-key-benefits {
+    gap: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-key-benefits li {
+    font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+}
+
+/* Adjust hero content padding for mobile */
+.hero-content {
+    min-height: calc(80vh - 4rem); /* Slightly less height on mobile */
+    padding-top: 4rem; /* Adjusted from 1rem to give more space */
 } 
