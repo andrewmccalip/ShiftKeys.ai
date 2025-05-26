@@ -455,10 +455,10 @@ function createShiftKeyAnimation() {
             let elapsed = 0;
             const timerInterval = setInterval(() => {
                 elapsed += 0.02;
-                timer.textContent = `${elapsed.toFixed(2)}s`;
+                timer.textContent = `elapsed time: ${elapsed.toFixed(2)} seconds`;
                 if (elapsed >= 1.0) {
                     clearInterval(timerInterval);
-                    timer.textContent = `${(1.0).toFixed(2)}s`;
+                    timer.textContent = `elapsed time: ${(1.0).toFixed(2)} seconds`;
                 }
             }, 20);
         }, 4400);
