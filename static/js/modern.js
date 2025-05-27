@@ -9,22 +9,17 @@ const sections = document.querySelectorAll('section');
 // Smooth scrolling for navigation links
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        console.log('Link clicked:', link.getAttribute('href')); // Test log
         if (link.getAttribute('href').startsWith('#')) {
             e.preventDefault();
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            console.log('Target section:', targetSection); // Test log
             if (targetSection) {
                 const navHeight = navbar.offsetHeight;
                 const targetPosition = targetSection.offsetTop - navHeight;
-                console.log('Scrolling to:', targetPosition); // Test log
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
-            } else {
-                console.error('Target section not found:', targetId); // Error if not found
             }
         }
     });
@@ -108,7 +103,7 @@ const observer = new IntersectionObserver((entries) => {
 const animateElements = document.querySelectorAll('.feature-card, .problem-item, .pricing-card');
 animateElements.forEach(el => observer.observe(el));
 
-/* // Parallax effect for hero section - TEMPORARILY COMMENTED OUT FOR DEBUGGING
+// Parallax effect for hero section
 const heroSection = document.querySelector('.hero');
 if (heroSection) {
     window.addEventListener('scroll', () => {
@@ -117,7 +112,6 @@ if (heroSection) {
         heroSection.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
     });
 }
-*/
 
 // Add CSS for animations
 const style = document.createElement('style');
