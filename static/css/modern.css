@@ -20,14 +20,17 @@
 
 /* Reset and Base Styles */
 * {
-    margin: 0;
-    padding: 0;
+    margin: 5;
+    padding: 5;
     box-sizing: border-box;
 }
 
 html, body {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */ /* Temporarily commented out for testing */
     overflow-x: hidden;
+    overflow-y: auto; /* Explicitly allow vertical scrolling */
+    height: auto; /* Ensure height is not fixed in a way that prevents scrolling */
+    position: relative; /* Or static, ensure not fixed in a weird way */
 }
 
 body {
@@ -230,15 +233,15 @@ h1, h2, h3, h4, h5, h6 {
             to bottom,
             transparent,
             transparent 25px,
-            rgba(200, 200, 200, 0.5) 25px,
-            rgba(200, 200, 200, 0.5) 26px
+            rgba(200, 200, 200, 0.7) 25px,
+            rgba(200, 200, 200, 0.7) 26px
         ),
         repeating-linear-gradient(
             to right,
             transparent,
             transparent 100px,
-            rgba(200, 200, 200, 0.5) 100px,
-            rgba(200, 200, 200, 0.5) 101px
+            rgba(200, 200, 200, 0.7) 100px,
+            rgba(200, 200, 200, 0.7) 101px
         );
 }
 
@@ -897,7 +900,8 @@ section {
 
 /* Problem Section */
 .problem {
-    background: white;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
 }
 
 .problem-grid {
@@ -927,11 +931,11 @@ section {
 .problem-item h3 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
-    color: var(--dark-color);
+    color: white;
 }
 
 .problem-item p {
-    color: var(--gray-color);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .problem-quote {
@@ -943,20 +947,20 @@ section {
 .problem-quote blockquote {
     font-size: 1.25rem;
     font-style: italic;
-    color: var(--dark-color);
-    border-left: 4px solid var(--primary-color);
+    color: white;
+    border-left: 4px solid rgba(255, 255, 255, 0.5);
     padding-left: 2rem;
     text-align: left;
 }
 
 /* Solution Section */
 .solution {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
+    background: linear-gradient(135deg, #dde2e7 0%, #f8f9fa 100%);
+    color: var(--dark-color);
 }
 
 .solution .section-title {
-    color: white;
+    color: var(--dark-color);
 }
 
 .solution-content {
@@ -971,7 +975,8 @@ section {
 
 .solution-text p {
     margin-bottom: 1rem;
-    opacity: 0.9;
+    opacity: 1;
+    color: var(--gray-color);
 }
 
 .solution-list {
@@ -989,7 +994,7 @@ section {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #4ade80;
+    color: var(--success-color);
     font-weight: bold;
     font-size: 1.25rem;
 }

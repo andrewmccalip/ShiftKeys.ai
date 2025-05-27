@@ -9,17 +9,22 @@ const sections = document.querySelectorAll('section');
 // Smooth scrolling for navigation links
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
+        console.log('Link clicked:', link.getAttribute('href')); // Test log
         if (link.getAttribute('href').startsWith('#')) {
             e.preventDefault();
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
+            console.log('Target section:', targetSection); // Test log
             if (targetSection) {
                 const navHeight = navbar.offsetHeight;
                 const targetPosition = targetSection.offsetTop - navHeight;
+                console.log('Scrolling to:', targetPosition); // Test log
                 window.scrollTo({
                     top: targetPosition,
                     behavior: 'smooth'
                 });
+            } else {
+                console.error('Target section not found:', targetId); // Error if not found
             }
         }
     });
@@ -103,7 +108,7 @@ const observer = new IntersectionObserver((entries) => {
 const animateElements = document.querySelectorAll('.feature-card, .problem-item, .pricing-card');
 animateElements.forEach(el => observer.observe(el));
 
-// Parallax effect for hero section
+/* // Parallax effect for hero section - TEMPORARILY COMMENTED OUT FOR DEBUGGING
 const heroSection = document.querySelector('.hero');
 if (heroSection) {
     window.addEventListener('scroll', () => {
@@ -112,6 +117,7 @@ if (heroSection) {
         heroSection.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
     });
 }
+*/
 
 // Add CSS for animations
 const style = document.createElement('style');
@@ -434,7 +440,6 @@ function createShiftKeyAnimation() {
         // Step 3: Show AI query box
         setTimeout(() => {
             aiQueryBox.classList.add('show');
-            shortcutContainer.style.visibility = 'hidden';
         }, 1900);
 
         // Step 4: Type the query
@@ -448,6 +453,7 @@ function createShiftKeyAnimation() {
         setTimeout(() => {
             queryText.style.display = 'none';
             aiCursor.style.display = 'none';
+            footer.style.display = 'none';
             timer.style.display = 'inline';
             timer.style.color = '#6e6e73';
             
@@ -461,7 +467,7 @@ function createShiftKeyAnimation() {
                     timer.textContent = `elapsed time: ${(1.0).toFixed(2)} seconds`;
                 }
             }, 20);
-        }, 5050);
+        }, 5350);
 
         // Step 6: Show answer
         setTimeout(() => {
@@ -470,20 +476,20 @@ function createShiftKeyAnimation() {
             answer.style.display = 'block';
             answer.style.color = '#1d1d1f';
             answer.textContent = 'The Moon is approximately 384,400 kilometers (238,855 miles) away from Earth.';
-        }, 6150);
+        }, 6450);
 
         // Step 7: Show action buttons
         setTimeout(() => {
             actionButtons.style.display = 'flex';
             footer.style.display = 'none';
-        }, 6550);
+        }, 6850);
 
         // Step 8: Hide everything
         setTimeout(() => {
             leftShift.classList.remove('key-pressed');
             rightShift.classList.remove('key-pressed');
             aiQueryBox.classList.remove('show');
-        }, 9550);
+        }, 9850);
     }
 
     function typeQuery(text, element, index = 0) {
@@ -496,8 +502,8 @@ function createShiftKeyAnimation() {
     // Run animation immediately
     runAnimation();
 
-    // Repeat every 10.05 seconds (increased by 650ms)
-    setInterval(runAnimation, 10050);
+    // Repeat every 10.35 seconds (increased by 300ms)
+    setInterval(runAnimation, 10350);
 }
 
 // Initialize shift key animation when DOM is loaded
