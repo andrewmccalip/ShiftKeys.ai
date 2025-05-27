@@ -20,21 +20,16 @@
 
 /* Reset and Base Styles */
 * {
-    margin: 5;
-    padding: 5;
+  
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 html, body {
+    /* scroll-behavior: smooth; */ /* Temporarily commented out for testing */
     overflow-x: hidden;
-    /* Removing styles added for scroll debugging: */
-    /* overflow-y: auto; */
-    /* height: auto; */
-    /* position: relative; */
+    overflow-y: auto; /* Explicitly allow vertical scrolling */
+    height: auto; /* Ensure height is not fixed in a way that prevents scrolling */
+    position: relative; /* Or static, ensure not fixed in a weird way */
 }
 
 body {
@@ -42,7 +37,6 @@ body {
     color: var(--dark-color);
     background-color: var(--light-color);
     line-height: 1.6;
-    /* overflow-x: hidden; is covered by html,body rule now */
 }
 
 /* Typography */
