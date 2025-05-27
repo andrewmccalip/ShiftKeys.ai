@@ -461,7 +461,7 @@ function createShiftKeyAnimation() {
                     timer.textContent = `elapsed time: ${(1.0).toFixed(2)} seconds`;
                 }
             }, 20);
-        }, 4400);
+        }, 5050);
 
         // Step 6: Show answer
         setTimeout(() => {
@@ -470,20 +470,20 @@ function createShiftKeyAnimation() {
             answer.style.display = 'block';
             answer.style.color = '#1d1d1f';
             answer.textContent = 'The Moon is approximately 384,400 kilometers (238,855 miles) away from Earth.';
-        }, 5500);
+        }, 6150);
 
         // Step 7: Show action buttons
         setTimeout(() => {
             actionButtons.style.display = 'flex';
             footer.style.display = 'none';
-        }, 5900);
+        }, 6550);
 
         // Step 8: Hide everything
         setTimeout(() => {
             leftShift.classList.remove('key-pressed');
             rightShift.classList.remove('key-pressed');
             aiQueryBox.classList.remove('show');
-        }, 8900);
+        }, 9550);
     }
 
     function typeQuery(text, element, index = 0) {
@@ -496,8 +496,8 @@ function createShiftKeyAnimation() {
     // Run animation immediately
     runAnimation();
 
-    // Repeat every 9.4 seconds
-    setInterval(runAnimation, 9400);
+    // Repeat every 10.05 seconds (increased by 650ms)
+    setInterval(runAnimation, 10050);
 }
 
 // Initialize shift key animation when DOM is loaded
