@@ -10,6 +10,9 @@ APP_VERSION = "0.21"  # You can update this as needed
 def home():
     return render_template('index.html')
 
+@app.route('/new')
+def home():
+    return render_template('index.html')
 @app.route('/demo')
 def demo():
     return render_template('demo.html')
@@ -25,6 +28,10 @@ def latest_version():
 @app.route('/products')
 def products():
     return render_template('products.html')
+
+@app.route('/workflow')
+def workflow():
+    return render_template('workflow.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=False) 
