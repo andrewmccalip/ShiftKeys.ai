@@ -11,8 +11,9 @@ def home():
     return render_template('index.html')
 
 @app.route('/new')
-def home():
+def new_home():
     return render_template('index.html')
+
 @app.route('/demo')
 def demo():
     return render_template('demo.html')
