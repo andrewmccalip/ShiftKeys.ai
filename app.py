@@ -23,5 +23,10 @@ def latest_version():
 def workflow():
     return render_template('workflow.html')
 
+@app.route('/workflow2')
+def workflow2():
+    return render_template('workflow2.html')
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=False) 
