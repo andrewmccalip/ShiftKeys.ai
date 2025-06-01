@@ -41,8 +41,8 @@
         }
 
         .twitter-card {
-            width: 600px;
-            height: 335px;
+            width: 750px;
+            height: 425px;
             background: #f5f5f7;
             border-radius: 16px;
             padding: 40px;
@@ -80,6 +80,9 @@
         .header {
             position: relative;
             z-index: 1;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
         }
 
         .title {
@@ -89,7 +92,6 @@
             letter-spacing: -0.04em;
             line-height: 1;
             color: #1d1d1f;
-            margin-bottom: 0.5rem;
         }
 
         .gradient-text {
@@ -105,7 +107,6 @@
             color: #6e6e73;
             font-style: italic;
             font-weight: 400;
-            margin-bottom: 1.5rem;
         }
 
         .workflow {
@@ -114,7 +115,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 1.5rem 0;
+            margin: 2.5rem 0 1.5rem;
         }
 
         .step {
@@ -124,37 +125,41 @@
         }
 
         .step-circle {
-            width: 60px;
-            height: 60px;
+            width: 100px;
+            height: 100px;
             background: rgba(255, 255, 255, 0.95);
             border: 2px solid rgba(103, 114, 229, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 0.75rem;
-            font-size: 24px;
+            margin: 0.5rem auto 0.75rem;
+            font-size: 40px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             position: relative;
         }
 
-        .step:nth-child(2) .step-circle {
+        .step:nth-child(2) .step-circle, .step:nth-child(4) .step-circle {
             border-color: rgba(255, 157, 46, 0.2);
+        }
+
+        .step:nth-child(1) .step-circle, .step:nth-child(3) .step-circle {
+            border-color: rgba(103, 114, 229, 0.2);
         }
 
         .step-number {
             position: absolute;
             top: -8px;
             right: -8px;
-            width: 20px;
-            height: 20px;
+            width: 28px;
+            height: 28px;
             background: #1d1d1f;
             color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
+            font-size: 14px;
             font-weight: 500;
             font-family: var(--font-primary);
         }
@@ -164,7 +169,7 @@
             font-size: 0.85rem;
             font-weight: 600;
             color: #1d1d1f;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
 
         .step-key {
@@ -201,7 +206,7 @@
         .cta {
             font-family: var(--font-primary);
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 400;
             color: #1d1d1f;
             margin-bottom: 0.5rem;
         }
@@ -224,7 +229,327 @@
         }
 
         .step:first-child .step-circle {
-            animation: pulse 2s ease-in-out infinite;
+            /* animation: pulse 2s ease-in-out infinite; */ /* Pulse animation is definitely off */
+        }
+
+        .text-select-animation-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px; /* Small padding for the box */
+        }
+
+        .mini-text-box {
+            width: 70px;
+            height: 40px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 4px;
+            font-family: var(--font-secondary);
+            font-size: 6px; /* Very small mock text */
+            line-height: 8px; /* Fixed line height for better alignment */
+            color: #555;
+            position: relative; /* For absolute positioning of highlight */
+            overflow: hidden; /* To contain highlight */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            cursor: text; /* Add text cursor */
+        }
+
+        .mock-text {
+            display: block;
+            white-space: nowrap;
+            position: relative;
+            z-index: 2; /* Ensure text is above highlight */
+        }
+
+        /* Stage 1: Text Selection (0-3 seconds) */
+        .selection-highlight {
+            position: absolute;
+            top: 8px; /* Align with actual text position */
+            left: 13px;
+            width: 0; /* Starts with no width */
+            height: 8px; /* Match line height */
+            background-color: rgba(103, 114, 229, 0.4); /* Semi-transparent primary color */
+            border-radius: 1px;
+            animation: highlight-text-anim 10s infinite ease-in-out;
+            z-index: 1; /* Behind text */
+        }
+
+        /* Additional highlight for multi-line selection */
+        .selection-highlight-line2 {
+            position: absolute;
+            top: 21px; /* Second line position (8px + 8px line height) */
+            left: 4px;
+            width: 0;
+            height: 8px;
+            background-color: rgba(103, 114, 229, 0.4);
+            border-radius: 1px;
+            animation: highlight-text-line2-anim 10s infinite ease-in-out;
+            z-index: 1;
+        }
+
+        /* Cursor element */
+        .text-cursor {
+            position: absolute;
+            width: 1px;
+            height: 8px;
+            background-color: #333;
+            top: 8px;
+            left: 4px;
+            animation: cursor-drag-anim 10s infinite ease-in-out;
+            z-index: 3; /* Above everything */
+        }
+
+        @keyframes highlight-text-anim {
+            /* Stage 1: 0-30% (0-3 seconds) */
+            0%, 5% { 
+                width: 0; 
+                left: 4px; 
+            }
+            15% { 
+                width: 60px; /* Full first line */
+                left: 4px; 
+            }
+            30%, 100% {
+                width: 0; /* Reset for next loop */
+                left: 4px;
+            }
+        }
+
+        @keyframes highlight-text-line2-anim {
+            /* Stage 1: 0-30% (0-3 seconds) */
+            0%, 15% { 
+                width: 0;
+                left: 4px;
+            }
+            25% {
+                width: 52px; /* Full second line */
+                left: 4px;
+            }
+            30%, 100% {
+                width: 0; /* Reset for next loop */
+                left: 4px;
+            }
+        }
+
+        @keyframes cursor-drag-anim {
+            /* Stage 1: 0-30% (0-3 seconds) */
+            0%, 4% {
+                left: 4px;
+                top: 8px;
+                opacity: 0;
+            }
+            5% {
+                left: 4px;
+                top: 8px;
+                opacity: 1; /* Cursor appears */
+            }
+            15% {
+                left: 64px; /* End of first line */
+                top: 8px;
+                opacity: 1;
+            }
+            16% {
+                left: 4px; /* Jump to start of second line */
+                top: 16px;
+                opacity: 1;
+            }
+            25% {
+                left: 56px; /* End of second line */
+                top: 16px;
+                opacity: 1;
+            }
+            30%, 100% {
+                left: 4px;
+                top: 8px;
+                opacity: 0; /* Hide until next loop */
+            }
+        }
+
+        .shift-keys-animation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px; /* Smaller gap between the two shift keys */
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Stage 2: Shift Keys (3-5 seconds) */
+        .shift-key-icon {
+            padding: 4px 8px; /* Smaller padding */
+            background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            border: 1px solid #b8b8b8;
+            border-radius: 4px;
+            font-family: var(--font-secondary);
+            font-size: 14px; /* Smaller font */
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+            box-shadow: 
+                0 1px 0 #fff inset,
+                0 2px 3px rgba(0,0,0,0.2);
+            animation: press-shift-key 10s infinite ease-in-out;
+            line-height: 1;
+            min-width: 32px; /* Smaller width */
+            min-height: 20px; /* Smaller height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .shift-keys-animation-container .shift-key-icon:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .shift-keys-animation-container .shift-key-icon:nth-child(2) {
+            animation-delay: 0.1s; /* Smaller delay for more realistic press */
+        }
+
+        @keyframes press-shift-key {
+            /* Idle: 0-30% and 50-100% */
+            0%, 30%, 50%, 100% { 
+                transform: translateY(0) scale(1); 
+                box-shadow: 
+                    0 1px 0 #fff inset,
+                    0 2px 3px rgba(0,0,0,0.2);
+                background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            }
+            /* Stage 2: 30-50% (3-5 seconds) */
+            35%, 40% { 
+                transform: translateY(1px) scale(0.98); 
+                box-shadow: 
+                    0 1px 0 #ddd inset,
+                    0 1px 1px rgba(0,0,0,0.15);
+                background: linear-gradient(to bottom, #e8e8e8 0%, #ddd 100%);
+            }
+            45% { 
+                transform: translateY(0) scale(1); 
+                box-shadow: 
+                    0 1px 0 #fff inset,
+                    0 2px 3px rgba(0,0,0,0.2);
+                background: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+            }
+        }
+
+        /* Stage 3: Typing (5-8 seconds) */
+        .typing-animation-container {
+            display: flex;
+            align-items: center; 
+            justify-content: flex-start; /* Align to start for typing effect */
+            width: 70px; /* Max width for text + caret */
+            height: 30px;
+            font-family: var(--font-primary);
+            font-size: 12px; /* Smaller, more realistic size */
+            color: #333;
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .typing-text::before { 
+            content: "";
+            animation: type-characters 10s steps(1, end) infinite;
+            display: inline-block; 
+            white-space: nowrap;
+            overflow: hidden;
+            vertical-align: middle;
+        }
+
+        .typing-caret {
+            width: 2px;
+            height: 14px; 
+            background-color: #333;
+            animation: caret-visibility 10s infinite, caret-blink 0.7s infinite;
+            margin-left: 1px; 
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        @keyframes type-characters {
+            /* Idle: 0-50% */
+            0%, 50% { content: ""; }
+            /* Stage 3: 50-80% (5-8 seconds) - faster typing */
+            52% { content: '"'; }
+            53% { content: '"t'; }
+            54% { content: '"tw'; }
+            55% { content: '"twe'; }
+            56% { content: '"twea'; }
+            57% { content: '"tweak'; }
+            58% { content: '"tweak '; }
+            59% { content: '"tweak t'; }
+            60% { content: '"tweak th'; }
+            61% { content: '"tweak thi'; }
+            62% { content: '"tweak this'; }
+            63% { content: '"tweak this"'; }
+            80%, 100% { content: ""; }
+        }
+
+        @keyframes caret-visibility {
+            0%, 50%, 80%, 100% { opacity: 0; }
+            50.1%, 79.9% { opacity: 1; }
+        }
+
+        @keyframes caret-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Stage 4: Thumb Rotation (8-10 seconds) */
+        .thumbs-animation-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .rotating-thumb-wrapper {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            transform-style: preserve-3d;
+            animation: rotate-wrapper 10s infinite ease-in-out;
+        }
+
+        .rotating-thumb {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 36px;
+            backface-visibility: hidden;
+        }
+
+        .rotating-thumb.thumb-up {
+            transform: translate(-50%, -50%) rotateY(0deg);
+        }
+
+        .rotating-thumb.thumb-down {
+            transform: translate(-50%, -50%) rotateY(180deg);
+        }
+        
+        @keyframes rotate-wrapper {
+            /* Idle: 0-80% */
+            0%, 80% { 
+                transform: rotateY(0deg);
+            }
+            /* Stage 4: 80-100% (8-10 seconds) */
+            85% {
+                transform: rotateY(180deg);
+            }
+            90%, 95% {
+                transform: rotateY(180deg);
+            }
+            100% {
+                transform: rotateY(360deg);
+            }
         }
     </style>
 </head>
@@ -237,26 +562,53 @@
 
         <div class="workflow">
             <div class="step">
+                <div class="step-text">Select Text</div>
                 <div class="step-circle">
                     <div class="step-number">1</div>
-                    <span>👆</span>
+                    <div class="text-select-animation-container">
+                        <div class="mini-text-box">
+                            <span class="mock-text">Lorem ipsum dolor sit.</span>
+                            <span class="mock-text">Amet consectetur elit.</span>
+                            <div class="selection-highlight"></div>
+                            <div class="selection-highlight-line2"></div>
+                            <div class="text-cursor"></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="step-text">Select</div>
                 <div class="step-key">
-                    <span class="key">left shift</span>
-                    <span>+</span>
-                    <span class="key">right shift</span>
+                    <span>(any app)</span>
                 </div>
             </div>
 
             <span class="arrow">→</span>
 
             <div class="step">
+                <div class="step-text">Invoke AI</div>
                 <div class="step-circle">
                     <div class="step-number">2</div>
-                    <span>⌨️</span>
+                    <div class="shift-keys-animation-container">
+                        <div class="shift-key-icon">↑</div>
+                        <div class="shift-key-icon">↑</div>
+                    </div>
                 </div>
+                <div class="step-key">
+                    <span class="key">Left Shift</span>
+                    <span>+</span>
+                    <span class="key">Right Shift</span>
+                </div>
+            </div>
+
+            <span class="arrow">→</span>
+
+            <div class="step">
                 <div class="step-text">Type Query</div>
+                <div class="step-circle">
+                    <div class="step-number">3</div>
+                    <div class="typing-animation-container">
+                        <span class="typing-text"></span>
+                        <span class="typing-caret"></span>
+                    </div>
+                </div>
                 <div class="step-key">
                     <span class="key">select model</span>
                 </div>
@@ -265,22 +617,27 @@
             <span class="arrow">→</span>
 
             <div class="step">
+                <div class="step-text">Accept / Reject</div>
                 <div class="step-circle">
-                    <div class="step-number">3</div>
-                    <span>👍</span>
+                    <div class="step-number">4</div>
+                    <div class="thumbs-animation-container">
+                        <div class="rotating-thumb-wrapper">
+                            <span class="rotating-thumb thumb-up">👍</span>
+                            <span class="rotating-thumb thumb-down">👎</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="step-text">Accept</div>
                 <div class="step-key">
-                    <span class="key">reject</span>
+                    <span class="key">Enter</span>
                     <span>/</span>
-                    <span class="key">regen</span>
+                    <span class="key">ESC</span>
                 </div>
             </div>
         </div>
 
         <div class="footer">
-            <div class="cta">ai in the os. escape the copy/paste doom loop.</div>
-            <a href="https://shiftkeys.ai" class="website">shiftkeys.ai</a>
+            <div class="cta">escape the copy/paste doom loop 2</div>
+            
         </div>
     </div>
 </body>
