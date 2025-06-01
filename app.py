@@ -4,9 +4,9 @@ import os
 app = Flask(__name__)
 
 # Define the application version
-APP_VERSION = "0.20"  # You can update this as needed
+APP_VERSION = "0.21"  # You can update this as needed
 
-@app.route('/new')
+@app.route('/')
 def home():
     return render_template('index.html')
 
