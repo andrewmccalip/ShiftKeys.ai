@@ -14,21 +14,10 @@ def home():
 def new_home():
     return render_template('index.html')
 
-@app.route('/demo')
-def demo():
-    return render_template('demo.html')
-
-@app.route('/demo2')
-def demo2():
-    return render_template('demo2.html')
-
 @app.route('/latest_version')
 def latest_version():
     return jsonify({"latest_version": APP_VERSION})
 
-@app.route('/products')
-def products():
-    return render_template('products.html')
 
 @app.route('/workflow')
 def workflow():
